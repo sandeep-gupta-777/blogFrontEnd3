@@ -1,0 +1,69 @@
+
+
+
+<div class="container" style="margin-bottom: .25%; width: 100%">
+
+  <!--comment starts here here-->
+
+  <!--<div class="row border" style="position: relative;margin-left: 0%;">-->
+  <!--<div class="row " *ngFor="let comment of commentArray" [ngStyle]="{'margin-left': '10%'}">-->
+  <div class="row "  [ngStyle]="{'margin-left': comment.commentLevel*5+ '%'}" style="margin-bottom: .25%">
+    <div class="col-md-1 hidden-xs" style="height: 100%">
+      <img class="img-responsive img-thumbnail" style="width: 50px;"
+           [src]="url"
+           (error)="setDefaultPic()"
+           alt="">
+    </div>
+    <div class="col-md-11 col-xs-12 pull-right whiteBackgroud" style="font-weight: bold; padding-top: 1.9%;">
+      <span><b>{{comment.commentAuthor_FullName}}</b></span>
+      <span>{{comment.commentDate|date:'medium'}}</span>
+      <button class="btn btn-primary btn-sm pull-right" (click)="showReplyBox = !showReplyBox">Reply</button>
+      <button class="btn btn-danger btn-sm  pull-right" (click)="saveComment()">{{showEditBox?'Save':'Edit'}}</button>
+    </div>
+    <!--<div id="triangle-left" style="position: absolute;left: 6.7%;top: 9%"></div>-->
+    <!--TODO: apply above triangle-->
+
+    <div class="col-md-11 col-xs-12 pull-right whiteBackgroud ">
+
+      <p *ngIf="!showEditBox">
+        {{editedCommentText}}
+      </p>
+
+      <textarea [(ngModel)]="editedCommentText" *ngIf="showEditBox" name="" id="" cols="30" rows="10" style="width: 100%"></textarea>
+
+    </div>
+
+
+  </div>
+  <!--comment ends here-->
+
+  <!--reply starts here-->
+
+  <div class="row" *ngIf="showReplyBox"  [ngStyle]="{'margin-left': ((comment.commentLevel+1)*5)+'%'}">
+    <div class="col-xs-1 " style="height: 100%">
+      <img class="img-responsive img-thumbnail" style="width: 50px;"
+           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyDw06sXVJ5KPbNAVXiqij6ACgrTPO64t7-7Rrt0QCn1xycwoJRrrIvIk"
+           alt="">
+    </div>
+    <div class="col-xs-11 pull-right whiteBackgroud" style="font-weight: bold; padding-top: 1.9%;">
+      <span>{{comment.commentAuthor_FullName}}</span>
+      <span>{{comment.commentDate}}</span>
+      <button class="btn btn-danger btn-sm  pull-right" (click)="postReply()">Post</button>
+    </div>
+    <!--<div id="triangle-left" style="position: absolute;left: 6.7%;top: 9%"></div>-->
+    <!--TODO: apply above triangle-->
+
+    <div class="col-xs-11 pull-right whiteBackgroud ">
+
+      <textarea [(ngModel)]="replyText" cols="30" rows="10" style="width: 100%"></textarea>
+
+    </div>
+
+
+    <!--<br><br><br>&lt;!&ndash;NOT SURE WHY SO MANY br ARE NEEDED&ndash;&gt;-->
+    <!--<br><br>&lt;!&ndash;NOT SURE WHY SO MANY br ARE NEEDED&ndash;&gt;-->
+    <!--<br><br><br><br><br>-->
+
+  </div>
+</div>
+

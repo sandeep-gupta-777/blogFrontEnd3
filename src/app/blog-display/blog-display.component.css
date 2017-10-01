@@ -1,0 +1,53 @@
+.container{
+  width: 90%;
+}
+
+.title-strip{
+  background-color: white;
+}
+
+.whiteText{
+  color: white;
+}
+:host /deep/ .searchQuery{
+  color: blue;
+}
+
+.border{
+  border: solid red 2px;
+}
+
+.blogTitle{
+  margin: 20px;
+  font-weight: bold;
+}
+
+.blogMetaData{
+  margin: 10px;
+}
+
+
+.bodyText{
+  color: #000;
+  font-size: 20px;
+  margin: 50px 50px ;
+}
+
+.vertical-center{
+  display: flex;
+  align-items: center;
+}
+.horizontal-center{
+  display: flex;
+  justify-content: center;
+}
+.linkCursor{
+  cursor: pointer;
+}
+
+
+:host /deep/ code:hover{
+  background-color: white;
+  /*color:white;*/
+}
+

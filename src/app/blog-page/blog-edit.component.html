@@ -1,0 +1,85 @@
+<div class="container " style="border-bottom: solid 1px white">
+  <div class="hidden-xs" style="color:white;font-size: 60px"><i class="fa fa-edit" style="margin-right: 1%"></i>Write</div>
+  <div class="hidden-lg" style="color:white;font-size: 30px"><i class="fa fa-edit" style="margin-right: 1%"></i>Write</div>
+</div>
+
+
+<br><br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 ">
+      <button class="btn btn-danger pull-right">Add images</button>
+      <a class="btn btn-primary pull-right" role="button" [routerLink]="'/blogdisplay/'+_id">Preview</a>
+      <button class="btn btn-default pull-right" (click)="updateBlogOnServer(true)">
+        {{messageFromServer?messageFromServer:'Update'}}
+      </button>
+      <!--<p *ngIf = "showMessageFromServer">{{messageFromServer}}</p>-->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <!--Blog title starts-->
+      <div class="form-group">
+        <label for="Title" style="color: white">Title</label>
+        <input type="text" class="form-control" [(ngModel)]="blogTitle">
+      </div>
+      <!--Blog title ends-->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <!--Blog title starts-->
+      <div class="form-group">
+        <label for="Title" style="color: white">Front Image</label>
+        <input type="text" class="form-control" [(ngModel)]="blogImageURL">
+      </div>
+      <!--Blog title ends-->
+    </div>
+  </div>
+
+  <ul class="nav nav-tabs">
+    <li [ngClass]="{'active':showEditorBoolean}" (click)="showEditor()"><a>Visual</a></li>
+    <li [ngClass]="{'active':showHTMLBoolean}" (click)="showHTML()"><a>HTML</a></li>
+
+  </ul>
+  <br>
+  <!--Text editor begins-->
+  <!--<div *ngIf="showEditorBoolean">-->
+  <div *ngIf="showEditorBoolean">
+    <label style="color: white">Body</label>
+    <textarea id="{{elementId}}"></textarea>
+  </div>
+  <div class="row">
+    <!--Text editor begins-->
+
+    <!--HTML begins-->
+    <div *ngIf="showHTMLBoolean">
+      <div class="form-group">
+        <label for="Title" style="color: white">Title</label>
+        <!--<textarea style="height: 500px" [value]=" blogContent" ngModel="blogContent" class="form-control"></textarea>-->
+        <textarea style="height: 500px" [(ngModel)]="blogContent" class="form-control"></textarea>
+      </div>
+
+    </div>
+    <!--HTML ends-->
+    <div class="col-xs-12">
+      <br>
+      <!--tags begin-->
+      <label style="color: white">Tags</label>
+      <!--why two inputs instead of one? ITS A PATCH-->
+      <div *ngIf="blogInstance"><input id="tags" [value]="blogInstance?blogInstance.blogTags:'All'"
+                                       data-role="tagsinput" tagsinput></div>
+      <div *ngIf="!blogInstance"><input id="tags" [value]="blogInstance?blogInstance.blogTags:'All'"
+                                        data-role="tagsinput" tagsinput></div>
+      <!--tags end-->
+    </div>
+
+
+  </div>
+</div>
+
+<!--this is for extra spacing below the editor-->
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+

@@ -1,0 +1,75 @@
+
+.border{
+  border: solid 2px red;
+}
+/*======================*/
+.center-vertical{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.center-horizontal{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.white-border{
+  /*border: green solid 3px;*/
+}
+.shadow {
+  box-shadow:1px 2px 0px 0px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #031d38 !important;
+}
+
+.card1 {
+  background-color: white;
+  box-shadow: 2px 1px 1px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+
+}
+
+.card1:hover {
+  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+}
+.whiteText{
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+.whiteText:hover{
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 18px;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+.active{
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 18px;
+}
+
+/*size dependent css below*/
+
+
+@media (max-width: 768px) {
+  .container-fluid{
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .container-fluid{
+    width: 32vh;
+  }
+}

@@ -1,0 +1,100 @@
+<div class="container" style="border-bottom: solid 1px white">
+  <div style="color:white;font-size: 60px; "><i class="fa fa-dashboard" style="margin-right: 1%"></i>Dashboard</div>
+</div>
+
+
+<br><br>
+<!--tabs begin-->
+<div class="container">
+    <ul class="nav nav-tabs">
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  [ngClass]="{'active':highlightTab==='Write'}"
+          (click)="uploadBoxOpen=true;highlightTab='Write'" #upload><a routerLink="/dashboard" >Write</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [ngClass]="{'active':highlightTab==='My Blogs'}"
+          (click)="getUsersBlogs()" #MyImages><a routerLink="writtenBlogs" [queryParams]="{parent:'dashboard'}"> My Blogs</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [ngClass]="{'active':highlightTab==='Liked'}"
+          (click)="getAllLikedBlogs()" #Liked><a routerLink="likedBlogs" [queryParams]="{parent:'dashboard'}"> Liked</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [ngClass]="{'active':highlightTab==='drafts'}"
+          (click)="getAllDirtyBlogs()" #Liked><a routerLink="Drafts" [queryParams]="{parent:'dashboard'}"> Drafts</a></li>
+    </ul>
+    <br>
+</div>
+<!--tabs end-->
+
+
+
+<!--various components from this point onwards-->
+
+<ng-template #server>
+  <router-outlet></router-outlet>
+</ng-template>
+
+
+<!--<div class="container"  *ngIf = "upload.classList.contains('active'); else server">-->
+<!--&lt;!&ndash;upload box start from here&ndash;&gt;-->
+  <!--<div class="row">-->
+    <!--<div class="myUploads">-->
+      <!--<div class="wrapper border col-sm-4 col-sm-offset-4" >-->
+        <!--<div>-->
+          <!--&lt;!&ndash; File input for the file-upload plugin, with special ng2-file-upload directive called ng2FileSelect &ndash;&gt;-->
+          <!--<input type="file" name="photo" ng2FileSelect [uploader]="uploader" multiple/>-->
+          <!--&lt;!&ndash; button to trigger the file upload when submitted &ndash;&gt;-->
+          <!--<button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()"-->
+                  <!--[disabled]="!uploader.getNotUploadedItems().length">-->
+            <!--Upload Images-->
+          <!--</button>-->
+        <!--</div>-->
+
+      <!--</div>-->
+    <!--</div>-->
+
+  <!--</div>-->
+  <!--&lt;!&ndash;upload box ends here&ndash;&gt;-->
+
+<!--</div>-->
+<!--=============================================================================-->
+<div class="container" *ngIf = "upload.classList.contains('active'); else server">
+  <p style="color: white">{{upload_status}}</p>
+  <div class="row">
+    <div class="col-xs-12 col-md-4 col-md-offset-2 border vertical-center horizontal-center">
+      <div >
+        <!--&lt;!&ndash; File input for the file-upload plugin, with special ng2-file-upload directive called ng2FileSelect &ndash;&gt;-->
+        <!--<input type="file" name="photo" ng2FileSelect [uploader]="uploader" multiple/>-->
+        <!--&lt;!&ndash; button to trigger the file upload when submitted &ndash;&gt;-->
+        <!--<button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()"-->
+                <!--[disabled]="!uploader.getNotUploadedItems().length">-->
+          <!--Upload Images-->
+        <!--</button>-->
+
+
+
+        <!-- File input for upload without using the plugin. -->
+        <input id="photo" type="file" multiple style="color: white" />
+        <!-- button to trigger the file upload when submitted -->
+        <button type="button" class="btn btn-success btn-s" (click)="upload1()">
+          Upload
+        </button>
+
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4 border vertical-center horizontal-center">
+      <ol style="color: white; font-size: 16px">
+        <li>Image should be of type: gif, jpg</li>
+        <li>Image size be of type below 5mb</li>
+        <li>Image name will be considered for tagging</li>
+      </ol>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--==================================================================================-->
+
+<!--&lt;!&ndash; File input for upload without using the plugin. &ndash;&gt;-->
+<!--<input id="photo" type="file" multiple />-->
+<!--&lt;!&ndash; button to trigger the file upload when submitted &ndash;&gt;-->
+<!--<button type="button" class="btn btn-success btn-s" (click)="upload1()">-->
+  <!--Upload with method 2-->
+<!--</button>-->

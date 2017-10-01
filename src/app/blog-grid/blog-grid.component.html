@@ -1,0 +1,158 @@
+
+<br>
+
+<div *ngIf="parent!=='dashaboard'" class="container" style="border-bottom: solid 1px white;">
+  <!--<div style="color:white;font-size: 60px; "><i class="fa fa-search-plus" style="margin-right: 1%"></i>Search Results</div>-->
+  <input id="searchT" [ngModel]="searchQuery" (ngModelChange)="debounce($event,200)"
+         placeholder="Search..." autofocus type="search"
+         style="width: 100%; background: transparent; border: hidden;color: white;">
+</div>
+
+<div class="container" style="min-height: 70vh; overflow: auto;">
+  <br>
+  <div class="container" style="width: 95%">
+
+    <div class="row">
+      <div class="col-xs-12 ">
+        <!--dropdown begins-->
+        <div class="dropdown pull-right " *ngIf="resultsArray && resultsArray.length>=1">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="true">
+            Sort By
+            <span class="caret"></span>
+          </button>
+          <!--TODO: use pipes instead of methods in sorting-->
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a (click)="sortbyPropery='-blogRelevency'">blogRelevency
+              <span *ngIf="sortbyPropery === '-blogRelevency'" class="glyphicon glyphicon-ok"></span>
+            </a></li>
+            <li><a (click)="sortbyPropery='-blogCreationDate'">Latest<span
+              *ngIf="sortbyPropery === '-blogCreationDate'" class="glyphicon glyphicon-ok"></span></a></li>
+            <li><a (click)="sortbyPropery='-blogLikes'">Likes<span
+              *ngIf="sortbyPropery === '-blogLikes'" class="glyphicon glyphicon-ok"></span></a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
+        <!--dropdown ends-->
+
+      </div>
+      <br>
+      <br>
+      <!--<div class="col-xs-12 horizontal-center" *ngIf=" resultsArray && resultsArray.length===0">-->
+      <!--{{resultsArray}}-->
+      <!--<h1>No Results</h1>-->
+      <!--</div>-->
+      <!--<div class="col-xs-12 horizontal-center" *ngIf="showLoadingIcon">-->
+      <!--<i class="fa fa-refresh fa-spin" style="font-size:55px;color: black"></i>-->
+      <!--</div>-->
+    </div>
+
+    <div class="row " *ngFor="let result of resultsArray|sortArrayBy : sortbyPropery" style="margin-bottom: 10px">
+      <!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_cards-->
+      <div class="col-xs-12 card1">
+        <!--<a *ngIf="isUserAlsoOwnerOfThisBlogPost(result.blogAuthor_id)" role="button" class="btn btn-danger"-->
+        <!--[routerLink]="'/blogEdit/' + result._id">Edit-->
+        <!--</a>-->
+        <!--<br>-->
+        <br><br>
+        <!--image starts here-->
+        <div class="col-md-2 col-xs-12">
+          <img class="img-responsive" style="border: 1px black solid"
+               [src]="result.blogImageURL? result.blogImageURL: 'https://ciphertrick.com/wp-content/uploads/2017/03/featured-1-900x420.jpg'"
+               alt="">
+        </div>
+        <!--image ends here-->
+
+        <div class="col-md-10 col-xs-12 result-title-snippet-container">
+          <!--result title here-->
+          <div class="linkCursor result-title" style="margin-top: 0px;font-family: sans-serif;font-weight: bold"
+               [innerHTML]="result.blogTitle" (click)="openBlogDisplayPage(result)"></div>
+          <div [innerHTML]="result.blogText">
+            <!--in grid we use text but in full text we use htnml-->
+
+            <!--result snippet here-->
+          </div>
+        </div>
+        <!--Metadata starts-->
+        <div class="col-xs-12 " style="height: 20px; margin-bottom: 10px">
+          <div class="pull-right">
+            <span><b>{{result.blogAuthor_fullName}}</b></span>
+            <span>{{result.blogCreationDate|date:'mediumDate'}}</span>
+            <a [routerLink]="'/blogEdit/' + result._id" target="_blank" style="color:#000;"> <i
+              *ngIf="isUserAlsoOwnerOfThisBlogPost(result.blogAuthor_id)" class="fa fa-edit">Edit</i></a>
+            <i class="fa fa-heart-o">{{result.blogLikes.length}}</i>
+            <i class="fa fa-comment-o">{{result.blogCommentsCount}}</i></div>
+
+        </div>
+        <!--Metadata ends-->
+
+
+      </div>
+      <!--<br><br><br><br><br><br><br>-->
+      <!--<br>-->
+
+    </div>
+
+    <!--Loading starts-->
+    <div *ngIf="showLoadingIcon">
+      <div class="row " *ngFor="let result of loadingArray" style="margin-bottom: 10px">
+        <!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_cards-->
+        <div style="min-height: 150px; overflow: auto" class="col-xs-12 card1">
+
+          <br><br>
+          <!--image starts here-->
+          <div class="col-md-2 col-xs-12" style="background-color: #eef3f6; height: 75px">
+            <!--<img class="img-responsive" style="border: 1px black solid"-->
+            <!--src="https://ciphertrick.com/wp-content/uploads/2017/03/featured-1-900x420.jpg"-->
+            <!--alt="">-->
+          </div>
+          <!--image ends here-->
+          <div class="col-md-10 col-xs-12" style="min-height: 80px">
+            <!--result title here-->
+            <h3 class="linkCursor"
+                style="background-color:#eef3f6;height: 20px; margin-top: 0px;font-family: sans-serif;font-weight: bold"></h3>
+            <div class="col-md-8 col-xs-12" style="background-color: #eef3f6; height: 12px">
+            </div>
+            <br>
+            <div class="col-md-7 col-xs-12" style="background-color: #eef3f6; height: 12px;">
+            </div>
+          </div>
+          <!--Metadata starts-->
+          <div class="col-md-4 col-md-offset-8 col-xs-12"
+               style="height: 20px; margin-bottom: 10px; background-color:#eef3f6;">
+
+          </div>
+          <!--Metadata ends-->
+
+
+        </div>
+        <!--<br><br><br><br><br><br><br>-->
+        <!--<br>-->
+
+      </div>
+    </div>
+
+    <!--Loading ends-->
+
+    <br><br>
+
+    <div class="row whiteText" style="margin-bottom: 10px;">
+      <div class="col-xs-12 horizontal-center" *ngIf=" resultsArray && resultsArray.length===0 && !showLoadingIcon">
+        <h1>No Results</h1>
+      </div>
+      <div class="col-xs-12 horizontal-center" *ngIf="showTimeoutError">
+        <p>Timeout Error. Please reload the page</p>
+      </div>
+      <div class="col-xs-12 horizontal-center" *ngIf="showLoadingIcon && !showTimeoutError">
+        <i class="fa fa-refresh fa-spin" style="font-size:55px;color: black"></i>
+      </div>
+      <div class="col-xs-12 horizontal-center">
+        <div class="loadMoreContainer" *ngIf="resultsArray && showLoadMore">
+          <button class="btn btn-default" (click)="loadMore()">Load More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

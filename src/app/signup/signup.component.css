@@ -1,0 +1,25 @@
+/*select.ng-touched.ng-invalid,input.ng-touched.ng-invalid{*/
+/*border: 1px solid red;*/
+/*!*background-color: red;*!*/
+/*}*/
+
+.vertical-center{
+  display: flex;
+  align-items: center;
+}
+.horizontal-center{
+  display: flex;
+  justify-content: center;
+}
+.input-group{
+  margin-bottom: 2px;
+}
+
+.whiteText{
+  color: white;
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+  /*background-color: red;*/
+}
