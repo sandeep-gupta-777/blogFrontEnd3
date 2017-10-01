@@ -1,0 +1,39 @@
+/*.wrapper{*/
+  /*display: flex;*/
+  /*flex-direction: row;*/
+/*}*/
+
+/*/deep/ .border1{*/
+  /*border: solid white 2px;*/
+/*}*/
+
+
+/*:host {*/
+/*app-thread {*/
+  /*display: block;*/
+  /*border: solid white 2px;*/
+
+/*}*/
+
+/*}*/
+/*:host  {*/
+  /*display: block;*/
+  /*border: 5px solid white;*/
+/*}*/
+
+.border{
+  border: 2px solid red;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.blackBackground{
+  background-color: black;
+}
+.center-vertical{
+  display: flex;
+  align-items: center;
+}
