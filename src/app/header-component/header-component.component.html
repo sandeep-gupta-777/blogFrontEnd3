@@ -1,132 +1,7 @@
-<!--<div class=" border center-vertical center-vertical card1 center-horizontal"-->
-<!--style="height: 110px;width: 100%;background-color: black;">-->
-
-<!--<div class="container border" style="width: 80%;height: 70%">-->
-
-<!--<div class="row center-vertical" style="height: 100%">-->
-<!--&lt;!&ndash;logo begins&ndash;&gt;-->
-<!--<div class="col-xs-2 border center-vertical" style="height: 100%;margin-bottom: 10px; margin-right: 10px">-->
-<!--&lt;!&ndash;<a routerLink="/" class="linkCursor logoSize border" style="height: 100%">&ndash;&gt;-->
-<!--<a routerLink="/"><img  src="./assets/logo1.png " style="width: 110%"></a>-->
-<!--&lt;!&ndash;logo ends&ndash;&gt;-->
-<!--&lt;!&ndash;</a>&ndash;&gt;-->
-<!--</div>-->
-
-<!--&lt;!&ndash;search box starts&ndash;&gt;-->
-<!--<div class="col-xs-6">-->
-<!--<div class="input-group input-group-lg white-border" *ngIf="router.url !=='/'" style="height: 20%">-->
-<!--<input type="text" class="form-control place form-element" [ngModel]="searchQuery"-->
-<!--(ngModelChange)="debounce($event,200)"-->
-<!--[ngModelOptions]="{standalone: true}" placeholder="Search blogs...">-->
-<!--<div class="input-group-btn" (click)="debounce(searchQuery,0)">-->
-<!--<button class="btn btn-default form-element" type="submit">-->
-<!--<i class="glyphicon glyphicon-search"></i>-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--&lt;!&ndash;search box ends&ndash;&gt;-->
-
-<!--<div class="col-xs-2 ">-->
-
-<!--<div class="row">-->
-
-<!--<div class="col-md-12 border pull-left" style="display: flex;flex-wrap: nowrap">-->
-
-
-<!--&lt;!&ndash;All icons button begins&ndash;&gt;-->
-<!--<button (click)="debounce('',0)"  routerLink="icons" class="btn btn-default btn-lg"> All Blogs</button>-->
-<!--&lt;!&ndash;All icons button ends&ndash;&gt;-->
-
-<!--&lt;!&ndash;All icons button begins&ndash;&gt;-->
-<!--<button (click)="debounce('',0)"  routerLink="icons" class="btn btn-default btn-lg "><i class="fa fa-pencil-square"> Write</i></button>-->
-<!--&lt;!&ndash;All icons button ends&ndash;&gt;-->
-
-<!--&lt;!&ndash;signup dropdown begins&ndash;&gt;-->
-<!--<div *ngIf="!isLoggedIn()" class="dropdown right-nav-link"><a class="dropdown-toggle "-->
-<!--style="font-size: 25px;font-weight: bold"-->
-<!--data-toggle="dropdown" href="#">-->
-<!--<button class="btn btn-default btn-lg "><i class="fa fa-user"></i> <span-->
-<!--class="caret"></span></button>-->
-
-
-<!--</a>-->
-<!--<ul class="dropdown-menu">-->
-<!--<li><a routerLink="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
-<!--<li><a routerLink="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--&lt;!&ndash;signup dropdown ends&ndash;&gt;-->
-
-<!--&lt;!&ndash;Dashboard button begins&ndash;&gt;-->
-<!--<div *ngIf="isLoggedIn()" class="dropdown right-nav-link"><a class="dropdown-toggle "-->
-<!--style="font-size: 25px;font-weight: bold"-->
-<!--data-toggle="dropdown" href="#">-->
-<!--<button class="btn btn-primary btn-lg "><i class="fa fa-dashboard"></i> <span-->
-<!--class="caret"></span></button>-->
-
-
-<!--</a>-->
-<!--<ul class="dropdown-menu">-->
-<!--<li><a >Hi {{userfirstName| uppercase}}!</a></li>-->
-<!--<li><a routerLink="dashboard">Dashboard</a></li>-->
-<!--<li><a href="#">Settings</a></li>-->
-<!--<li (click)="logout()"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>-->
-<!--</ul>-->
-<!--&lt;!&ndash;Dashboard button ends&ndash;&gt;-->
-
-
-<!--</div>-->
-
-<!--</div>-->
-
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="row border"  >-->
-<!--<div class="col-xs-12  center-horizontal" style="width: 100%">-->
-<!--<nav class="navbar navbar-inverse  border" style="border: 2px white solid; background-color: black">-->
-<!--<div class="container-fluid">-->
-<!--<div class="navbar-header">-->
-<!--<a class="navbar-brand" href="#">WebSiteName</a>-->
-<!--</div>-->
-<!--<ul class="nav navbar-nav">-->
-<!--<li class="active" style="background-color: white"><a href="#">All Blogs</a></li>-->
-<!--<li><a href="#"> Write</a></li>-->
-<!--</ul>-->
-<!--<form class="navbar-form nav navbar-nav navbar-center">-->
-<!--<div class="form-group" >-->
-<!--<input type="text" class="form-control" style="width: 100%" placeholder="Search">-->
-<!--</div>-->
-<!--<button type="submit" class="btn btn-default">Submit</button>-->
-<!--</form>-->
-<!--<ul class="nav navbar-nav navbar-right">-->
-<!--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
-<!--<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--</nav>-->
-
-<!--</div>-->
-<!--</div>-->
-
-<!--</div>-->
-
-
-<!--<span class='searchQuery'>-->
-<!--Th-->
-<!--<span class='searchQuery'>is</span>-->
-<!--</span>-->
-<!--is-->
-<!--<span class='searchQuery'>a</span>-->
-<!--<span class='searchQuery'>cat</span> <span class='searchQuery'>pic</span>-->
-
-
-<div class="container-fluid  hidden-lg center-vertical sticky-top" style="background-color: #1d1f20;height: 10vh">
+<!--top bar for xs starts-->
+<div class="container-fluid  hidden-lg center-vertical" style="background-color: #1d1f20;height: 10vh">
   <div class="row" >
-    <!--<div class="col-xs-4 border">hello</div>-->
-    <!--<div class="col-xs-8 border">hello</div>-->
-    <div class="col-xs-2 "  (click)="showMenu = !showMenu" style="height: 10%">
+    <div class="col-xs-2 "  (click)="showMenuOnXS = !showMenuOnXS" style="height: 10%">
       <i class="glyphicon glyphicon-menu-hamburger" style="color: white; font-size: 35px; "></i>
     </div>
     <div class="col-xs-10 " style="height: 10%">
@@ -137,9 +12,10 @@
     </div>
   </div>
 </div>
+<!--top bar for xs ends-->
 
 
-<div class="container-fluid" style=" height: 100vh;background-color: #1d1f20;overflow-y: auto" [ngClass]="{'hidden-xs':!showMenu}">
+<div class="container-fluid" style=" height: 100vh;background-color: #1d1f20;overflow-y: auto" [ngClass]="{'hidden-xs':!showMenuOnXS}">
   <div class="row center-vertical" style="height: 20%;">
 
 
@@ -178,10 +54,11 @@
         <div class="input-group">
           <input type="text"
                  [ngModel]="searchQuery" (ngModelChange)="debounce($event,200)"
-                 class="form-control" placeholder="Search" aria-describedby="basic-addon2"
+                 class="form-control" placeholder="Search..." aria-describedby="basic-addon2"
                 style="background: transparent; color: white"
           >
-          <span style="background: transparent;" class="input-group-addon" id="basic-addon2"><i class="fa fa-search" style="color: white"> </i></span>
+          <span (click)="debounce(searchQuery,0)" style="background: transparent;cursor: pointer"
+                class="input-group-addon"  id="basic-addon2"><i class="fa fa-search" style="color: white"> </i></span>
         </div>
       </div>
     </div>
@@ -220,6 +97,7 @@
 
 <!--checking if this works-->
 <!--checking if this works too-->
+
 
 
 

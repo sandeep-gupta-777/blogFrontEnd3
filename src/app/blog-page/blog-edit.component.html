@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-xs-12 ">
       <button class="btn btn-danger pull-right">Add images</button>
-      <a class="btn btn-primary pull-right" role="button" [routerLink]="'/blogdisplay/'+_id">Preview</a>
+      <a *ngIf="_id" class="btn btn-primary pull-right" role="button" (click)="showPreviewClicked()" [routerLink]="'/blogdisplay/'+_id">Preview</a>
       <button class="btn btn-default pull-right" (click)="updateBlogOnServer(true)">
         {{messageFromServer?messageFromServer:'Update'}}
       </button>
@@ -40,14 +40,13 @@
   </div>
 
   <ul class="nav nav-tabs">
-    <li [ngClass]="{'active':showEditorBoolean}" (click)="showEditor()"><a>Visual</a></li>
+    <li [ngClass]="{'active':!showHTMLBoolean}" (click)="showEditor()"><a>Visual</a></li>
     <li [ngClass]="{'active':showHTMLBoolean}" (click)="showHTML()"><a>HTML</a></li>
 
   </ul>
   <br>
-  <!--Text editor begins-->
-  <!--<div *ngIf="showEditorBoolean">-->
-  <div *ngIf="showEditorBoolean">
+
+  <div [hidden]="showHTMLBoolean">
     <label style="color: white">Body</label>
     <textarea id="{{elementId}}"></textarea>
   </div>
@@ -55,7 +54,7 @@
     <!--Text editor begins-->
 
     <!--HTML begins-->
-    <div *ngIf="showHTMLBoolean">
+    <div [hidden]="!showHTMLBoolean">
       <div class="form-group">
         <label for="Title" style="color: white">Title</label>
         <!--<textarea style="height: 500px" [value]=" blogContent" ngModel="blogContent" class="form-control"></textarea>-->

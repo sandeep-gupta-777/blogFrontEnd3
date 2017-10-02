@@ -43,6 +43,7 @@ import { CommentComponent } from './comment/comment.component';
 import { TrimStringPipe } from './trim-string.pipe';
 import {EventService} from "./event.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ComponentService} from "./component.service";
 
 // routes
 const appRoutes: Routes = [
@@ -118,7 +119,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule
   ],
   providers: [
-   Helper,Global,Shared,EventService
+   Helper,Global,Shared,EventService,ComponentService
   ],
   bootstrap: [AppComponent]
 })

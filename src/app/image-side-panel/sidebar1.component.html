@@ -60,9 +60,9 @@
       </div>
       <p>{{editMode}}</p>
 
-      <div *ngIf="!editMode">
-        <a style="cursor: pointer;" *ngFor="let tag of imageContainer.imageTags" (click)="triggerAllIconObservable(tag)"> <span class="badge">{{tag}}</span></a>
-      </div>
+      <!--<div *ngIf="!editMode">-->
+        <!--<a style="cursor: pointer;" *ngFor="let tag of imageContainer.imageTags" (click)="triggerAllIconObservable(tag)"> <span class="badge">{{tag}}</span></a>-->
+      <!--</div>-->
 
 
       <div  *ngIf="editMode"><input  id="tags" [value]="imageContainer.imageTags" data-role="tagsinput" tagsinput></div>

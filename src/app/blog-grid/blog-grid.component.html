@@ -145,10 +145,10 @@
         <p>Timeout Error. Please reload the page</p>
       </div>
       <div class="col-xs-12 horizontal-center" *ngIf="showLoadingIcon && !showTimeoutError">
-        <i class="fa fa-refresh fa-spin" style="font-size:55px;color: black"></i>
+        <i class="fa fa-refresh fa-spin" style="font-size:55px;"></i>
       </div>
       <div class="col-xs-12 horizontal-center">
-        <div class="loadMoreContainer" *ngIf="resultsArray && showLoadMore">
+        <div class="loadMoreContainer" *ngIf="resultsArray && showLoadMore &&!showLoadingIcon" >
           <button class="btn btn-default" (click)="loadMore()">Load More</button>
         </div>
       </div>

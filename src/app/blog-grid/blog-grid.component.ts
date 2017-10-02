@@ -16,27 +16,8 @@ import {map} from "rxjs/operator/map";
 })
 export class BlogGridComponent implements OnInit {
 
-  parent;
-  criteriaObj:CriteriaObject =this.global.getCriteriaObject();
 
-  ngOnDestroy(): void {
-    // alert('destroying grid');
 
-    if(this.subscriptionGet)
-      this.subscriptionGet.unsubscribe();
-    if(this.subscriptionPost)
-      this.subscriptionPost.unsubscribe();
-    if(this.triggerGetResultsEventSubscription)
-      this.triggerGetResultsEventSubscription.unsubscribe();
-    if(this.sharedServiceSubscription)
-      this.sharedServiceSubscription.unsubscribe();
-    if(this.makePostRequestSubscription)
-      this.makePostRequestSubscription.unsubscribe();
-    if(this.loadMoreImagesSubscription)
-      this.loadMoreImagesSubscription.unsubscribe();
-    if(this.notifyKeywordChangeEventSubscription)
-      this.notifyKeywordChangeEventSubscription.unsubscribe();
-  }
   lastCall;
   debounce(searchQuery,interval=0) {//TODO: shift this to helper class
     //https://stackoverflow.com/questions/18177174/how-to-limit-handling-of-event-to-once-per-x-seconds-with-jquery-javascript
@@ -68,61 +49,13 @@ export class BlogGridComponent implements OnInit {
 
 
 
-
-
-  showSidePanel = false;
-  showLoadingIcon= false;
-  showTimeoutError= false;
-
-  searchQuery;
-  showLoadMore = true;
-  sortbyPropery = "-blogRelevency";
-  private subscriptionGet;
-  private triggerGetResultsEventSubscription;
-  private sharedServiceSubscription;
-  private makePostRequestSubscription;
-  private loadMoreImagesSubscription;
-  private loadMoreResultsSubscription;
-  private notifyKeywordChangeEventSubscription;
-  previouslyLoadedResultCount=0;
-  newResultsToBeLoadedCount = 1;//TODO: make it a global variable
-  private subscriptionPost;
-  resultsArray: BlogPost[];
-  loadingArray = [1,2];
-  searchQueryTimeStamp;
-  constructor(private sharedService: Shared,private http:Http,private helper:Helper, private global:Global, private router: Router, private activatedRoute:ActivatedRoute) {
-
-
-
-  }
   test(){
     console.log(this.resultsArray);
     return this.resultsArray;
   }
 
-  isUserAlsoOwnerOfThisBlogPost(imageAuthor_id){
-    //TODO: this method is called by 4 time, debug it
-    let temp = this.global.getLoggedInUserDetails();
-    if(!temp) return false;
-    return imageAuthor_id ===this.global.getLoggedInUserDetails()._id;
-  }
-  sortResultsArrayBy(property){
-    this.sortbyPropery = property;
-    this.resultsArray = this.resultsArray.sort(this.dynamicSort(property));
-  }
-  dynamicSort(property:string) {
-    let sortOrder = 1;
-    if (property[0] === "-") {
-      sortOrder = -1;
-      property = property.substr(1);
-    }
-    return function (a, b) {
-      let result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-      return result * sortOrder;
-    }
-  }
 
-  timeOutRef;
+
 
   showTimeOutErrorIfNeeded(){
     this.showTimeoutError = true;
@@ -190,23 +123,13 @@ export class BlogGridComponent implements OnInit {
   // console.log('just before the subscription');
     //TODO: check if this can be moved to helper function
     this.triggerGetResultsEventSubscription = this.helper.getResultEvent.subscribe((criteriaObj:any)=>{//change any to CriteriaObj
-      // console.log('getting results from server');
-      // let url = criteriaObj.url;
-      // let requestType = criteriaObj.requestType;
-      // let searchQuery = criteriaObj.searchQuery;
-      // criteriaObj.searchQueryTImeStamp = this.searchQueryTImeStamp;
+
       criteriaObj.searchQueryTimeStamp=Date.now();
       if(this.global.getLoggedInUserDetails())
       criteriaObj.user_id = this.global.getLoggedInUserDetails()._id;
-      // console.log('getting results from server for the following criteria object:');
-
-      this.searchQueryTimeStamp = Date.now(); //at this time search is performed
-      // let user_id = localStorage.getItem('userID');
       this.showLoadingIcon=true;
 
       //change the url accordingly, but not if blog-grid.component.ts is child component
-      // debugger;
-      // if(this.criteriaObj.shouldNavigateToSRP && !this.criteriaObj.shouldNavigateToSRP){
         if(tempUrl.indexOf('parent=dashboard')>-1)//TODO: change this to something more robust
         {
           this.parent='dashaboard';
@@ -226,20 +149,6 @@ export class BlogGridComponent implements OnInit {
         if(!criteriaObj.searchQueryTimeStamp) criteriaObj.searchQuery ="";
         // console.log('subscribing to make post req');
         this.subscriptionPost = this.helper.makePostRequest(criteriaObj.url,criteriaObj).subscribe(
-
-
-
-        /*Following code sends criteriaObj to server
-        * Also following code is INDEPENDENT OF HOW
-        * */
-
-        // criteriaObj = {searchQuery:"cat"};
-        // alert('making request');
-        // this.subscriptionPost = this.http.post('http://localhost:3000/allresults', criteriaObj)
-        //   .map((response: any) => response.json())
-        //   .catch((err: Response) => Observable.throw(err.json()))
-        //   .subscribe(
-          /*following callback is NOT called when url at the time host was http://localhost:4200*/
 
           (value:any) =>{
             console.log('recieved results from server');
@@ -266,21 +175,9 @@ export class BlogGridComponent implements OnInit {
 
         );
       }
-      else {
-        // this.subscriptionGet =  this.helper.makeGetRequest(url).subscribe(
-        //   (value) =>{
-        //     this.showLoadingIcon=false;
-        //     // this.imageContainers = value;
-        //     this.resultsArray = value;
-        //     // this.sortImageContainerArrayBy('-imageVoteCount');
-        //     this.sortResultsArrayBy('-imageVoteCount');//change here
-        //     value.length<1?this.showLoadMore=false:this.showLoadMore=true;//TODO: change 1 to 10
-        //   });
-      }
 
     });
 
-    //fine
     this.notifyKeywordChangeEventSubscription = this.helper.notifyKeywordChangeEvent.subscribe(value=>{
       this.searchQuery = value;
       this.global.setSearchQuery(value);
@@ -288,4 +185,72 @@ export class BlogGridComponent implements OnInit {
 
   }
 
+
+//=======================LIT=================
+
+  isUserAlsoOwnerOfThisBlogPost(imageAuthor_id){
+    //TODO: this method is called by 4 time, debug it
+    let temp = this.global.getLoggedInUserDetails();
+    if(!temp) return false;
+    return imageAuthor_id ===this.global.getLoggedInUserDetails()._id;
+  }
+  sortResultsArrayBy(property){
+    this.sortbyPropery = property;
+    this.resultsArray = this.resultsArray.sort(this.dynamicSort(property));
+  }
+  dynamicSort(property:string) {
+    let sortOrder = 1;
+    if (property[0] === "-") {
+      sortOrder = -1;
+      property = property.substr(1);
+    }
+    return function (a, b) {
+      let result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      return result * sortOrder;
+    }
+  }
+  ngOnDestroy(): void {
+    // alert('destroying grid');
+
+    if(this.subscriptionGet)
+      this.subscriptionGet.unsubscribe();
+    if(this.subscriptionPost)
+      this.subscriptionPost.unsubscribe();
+    if(this.triggerGetResultsEventSubscription)
+      this.triggerGetResultsEventSubscription.unsubscribe();
+    if(this.sharedServiceSubscription)
+      this.sharedServiceSubscription.unsubscribe();
+    if(this.makePostRequestSubscription)
+      this.makePostRequestSubscription.unsubscribe();
+    if(this.loadMoreImagesSubscription)
+      this.loadMoreImagesSubscription.unsubscribe();
+    if(this.notifyKeywordChangeEventSubscription)
+      this.notifyKeywordChangeEventSubscription.unsubscribe();
+  }
+  showSidePanel = false;
+  showLoadingIcon = false;
+  showTimeoutError = false;
+  searchQuery;
+  showLoadMore = true;
+  sortbyPropery = "-blogRelevency";
+  private subscriptionGet;
+  private triggerGetResultsEventSubscription;
+  private sharedServiceSubscription;
+  private makePostRequestSubscription;
+  private loadMoreImagesSubscription;
+  private loadMoreResultsSubscription;
+  private notifyKeywordChangeEventSubscription;
+  previouslyLoadedResultCount = 0;
+  newResultsToBeLoadedCount = 1;//TODO: make it a global variable
+  private subscriptionPost;
+  resultsArray: BlogPost[];
+  loadingArray = [1, 2];
+  searchQueryTimeStamp;
+  parent;
+  timeOutRef;
+  criteriaObj:CriteriaObject =this.global.getCriteriaObject();
+
+
+  constructor(private sharedService: Shared, private http: Http, private helper: Helper, private global: Global, private router: Router, private activatedRoute: ActivatedRoute) {
+  }
 }

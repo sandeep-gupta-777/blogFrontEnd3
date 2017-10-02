@@ -68,6 +68,7 @@ export class BlogDisplayComponent implements OnInit {
 
   //fine
   isUserAlsoOwnerOfThisBlogPost() {
+    console.log('isUserAlsoOwnerOfThisBlogPost');
     //TODO: this method is called by 4 time, debug it
     let temp = this.global.getLoggedInUserDetails();
     if (!(temp && this.blogPost)) return false;
@@ -86,14 +87,13 @@ export class BlogDisplayComponent implements OnInit {
 
 
   triggerGetResultEvent(searchQuery) {//TODO: this exact same method is written in header, put it in helper file
-    this.helper.notifyKeywordChangeEvent.emit(searchQuery);
-    this.helper.setKeywordIntoSearchBarEvent.emit(searchQuery);
 
     //navigate to http://localhost:4200/icons page is not already navigated
     if(this.router.url !== "/"+this.global._backendRoute_AllResults)//these are frontend routes but with same value
-      this.router.navigate(["/"+ this.global._backendRoute_AllResults]);
+      this.router.navigate(["/"+ this.global._backendRoute_AllResults],{queryParams:{query:searchQuery}});
 
     setTimeout(()=>{
+      this.helper.notifyKeywordChangeEvent.emit(searchQuery);
       this.criteriaObj.url = this.global._backendRoute_AllResults;
       this.helper.triggergetResultEvent(this.criteriaObj);
     }, 0);
@@ -114,13 +114,6 @@ export class BlogDisplayComponent implements OnInit {
       //
     }
     else {
-      //save all the changed values
-      // imageContainer.imageName
-      //this.imageContainer.imagedescription
-
-      //TODO: Implement tags
-      // this.imageContainer.imageTags =  (<any>$('#tags')).tagsinput('items');
-      // console.log((<any>$('#tags')).tagsinput('items'));
 
       //make a call to save this object
       this.helper.saveEditedImageContainer(this.imageContainer).subscribe(

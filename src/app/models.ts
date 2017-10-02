@@ -35,14 +35,14 @@ export interface SiteUser {
 
 export interface BlogPost{
   _id?:string,
-  blogTitle:string,
+  blogTitle?:string,
   blogHTML?:string,
   blogDraftHTML?:string,
   blogIsDirty?:boolean,
-  blogText:String,
+  blogText?:String,
   blogAuthor_id?:string,
   blogAuthor_fullName?:string,
-  blogCreationDate:Date,
+  blogCreationDate?:Date,
   blogLastUpdatedDate?:Date,
   blogLikes?:[String],
   blogViews?:number,
