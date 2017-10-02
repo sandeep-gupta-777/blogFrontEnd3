@@ -1,12 +1,12 @@
 <!--top bar for xs starts-->
-<div class="container-fluid  hidden-lg center-vertical" style="background-color: #1d1f20;height: 10vh">
-  <div class="row" >
-    <div class="col-xs-2 "  (click)="showMenuOnXS = !showMenuOnXS" style="height: 10%">
-      <i class="glyphicon glyphicon-menu-hamburger" style="color: white; font-size: 35px; "></i>
+<div class="container-fluid  hidden-lg " style="background-color: #1d1f20;height: 10%">
+  <div class="row center-vertical " style="height: 100%" >
+    <div class="col-xs-2  "  (click)="showMenuOnXS = !showMenuOnXS">
+      <i class="glyphicon glyphicon-menu-hamburger" style="color: white; font-size: 25px; "></i>
     </div>
-    <div class="col-xs-10 " style="height: 10%">
+    <div class="col-xs-10 ">
       <a (click)="debounce('')"  [routerLink]="['/allresults']" [queryParams]="{query:''}" >
-        <img  style="height: 38px"  src="./assets/logo1.png ">
+        <img class="img-responsive"  style="height: 38px"  src="./assets/logo1.png ">
       </a>
 
     </div>
@@ -15,8 +15,10 @@
 <!--top bar for xs ends-->
 
 
-<div class="container-fluid" style=" height: 100vh;background-color: #1d1f20;overflow-y: auto" [ngClass]="{'hidden-xs':!showMenuOnXS}">
-  <div class="row center-vertical" style="height: 20%;">
+<div class="container-fluid " style="height: 100vh; background-color: #1d1f20" [ngClass]="{'hidden-xs':!showMenuOnXS}">
+
+
+  <div  class="row hidden-xs center-vertical" style="height: 20%;">
 
 
 

@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-xs-12 ">
       <button class="btn btn-danger pull-right">Add images</button>
-      <a *ngIf="_id" class="btn btn-primary pull-right" role="button" (click)="showPreviewClicked()" [routerLink]="'/blogdisplay/'+_id">Preview</a>
+      <a *ngIf="_id" class="btn btn-primary pull-right" role="button" (click)="showPreviewClicked()" >Preview</a>
       <button class="btn btn-default pull-right" (click)="updateBlogOnServer(true)">
         {{messageFromServer?messageFromServer:'Update'}}
       </button>

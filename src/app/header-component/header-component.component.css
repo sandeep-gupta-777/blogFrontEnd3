@@ -5,14 +5,13 @@
 /*======================*/
 .center-vertical{
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
 
 }
 .center-horizontal{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+
 
 }
 
@@ -70,6 +69,6 @@ a{
 }
 @media (min-width: 768px) {
   .container-fluid{
-    width: 32vh;
+    /*width: 32vh;*/
   }
 }

@@ -11,6 +11,7 @@ import {factoryOrValue} from "rxjs/operator/multicast";
 import {Shared} from "../shared.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ComponentService} from "../component.service";
+// import {win} from "@angular/platform-browser/src/browser/tools/browser";
 // let  Prism = require('prismjs');
 
 
@@ -125,7 +126,7 @@ export class BlogPageComponent implements OnInit, AfterViewInit, OnDestroy, OnCh
   blogImageURL = "";
   editor;
   baseURL: string = '/';
-  _id;
+  _id=null;
   isBlogHTMLDraftDirty: Boolean = false;
 
   showHTML() {
@@ -138,7 +139,9 @@ export class BlogPageComponent implements OnInit, AfterViewInit, OnDestroy, OnCh
   }
 
   showPreviewClicked(){
-
+      // this.router.navigate(['/blogdisplay/'+this._id]);
+    // window.open('')
+    window.open('http://localhost:4200/blogdisplay/'+ this._id, '_blank');//TODO: show in pop up rather that in a new window
   }
 
 

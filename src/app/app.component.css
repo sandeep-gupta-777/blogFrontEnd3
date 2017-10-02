@@ -41,11 +41,15 @@
   .container-fluid{
     width: 100%;
   }
-}
-@media (max-width: 768px) {
+
   #headerFixed{
-    width: 100%;
-    overflow-y: scroll;
+    width:100%;
+  }
+}
+@media (min-width: 768px) {
+  #headerFixed{
+    width:16%;
+
   }
 }
 
