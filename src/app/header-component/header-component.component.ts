@@ -121,12 +121,12 @@ export class HeaderComponentComponent implements OnInit {
   }
 
   goToBlogEditPage(){
-    if(this.isLoggedIn())
+    // if(this.isLoggedIn())
       this.router.navigate(['new/blog']);
-    else {
-      this.global.previousURL = 'new/blog';
-      this.router.navigate(['/login']);
-    }
+    // else {
+    //   this.global.previousURL = 'new/blog';
+    //   this.router.navigate(['/login']);
+    // }
   }
 
   goToLoginPage(){

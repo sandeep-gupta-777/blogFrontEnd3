@@ -44,6 +44,7 @@ import { TrimStringPipe } from './trim-string.pipe';
 import {EventService} from "./event.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ComponentService} from "./component.service";
+import {AuthService} from "./auth.service";
 
 // routes
 const appRoutes: Routes = [
@@ -64,7 +65,7 @@ const appRoutes: Routes = [
     ]},
   {component: BlogGridComponent, path: 'allresults'},
   {component: BlogDisplayComponent, path: 'blogdisplay/:id'},
-  {component: TextEditorInterfaceComponent, path: 'new/blog'},
+  {component: TextEditorInterfaceComponent, path: 'new/blog',canActivate:[AuthService]},
   {component: TextEditorInterfaceComponent, path: 'blogEdit'},
   {component: TextEditorInterfaceComponent, path: 'blogEdit/:id'},
   // {component: BlogGridComponent, path: ''},
@@ -119,7 +120,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule
   ],
   providers: [
-   Helper,Global,Shared,EventService,ComponentService
+   Helper,Global,Shared,EventService,ComponentService,AuthService
   ],
   bootstrap: [AppComponent]
 })
