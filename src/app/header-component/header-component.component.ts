@@ -62,7 +62,6 @@ export class HeaderComponentComponent implements OnInit {
     this.helper.notifyKeywordChangeEvent.subscribe((searchQuery)=>{
       this.searchQuery = searchQuery;
     });
-
     this.eventService.setLoggedInUserDetailsEvent.subscribe(
       (value) => {
         this.userfirstName = value.fullName.split(" ")[0];
@@ -121,12 +120,12 @@ export class HeaderComponentComponent implements OnInit {
   }
 
   goToBlogEditPage(){
-    // if(this.isLoggedIn())
+    if(!this.isLoggedIn()){
+      this.helper.showNotificationBarEvent.emit({message:'Please log in to create blog'});
+    }
+    this.global.previousURL = 'new/blog';
+    this.global.previousSRPQueryParams = {query:''};
       this.router.navigate(['new/blog']);
-    // else {
-    //   this.global.previousURL = 'new/blog';
-    //   this.router.navigate(['/login']);
-    // }
   }
 
   goToLoginPage(){
@@ -140,6 +139,8 @@ export class HeaderComponentComponent implements OnInit {
     localStorage.clear();
     this.global.previousURL = window.location.pathname;
     this.global.previousSRPQueryParams = this.activatedRoute.snapshot.queryParams;
+    this.router.navigate(['login']);
+    this.helper.showNotificationBarEvent.emit({message:'You are logged out!'});
   };
 
   ngOnDestroy(): void {

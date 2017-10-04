@@ -25,7 +25,7 @@ export class Global{
   public blogCommentsArray: BlogComment[];
 
   public previousSRPURL ;
-  public previousSRPQueryParams ;
+  public previousSRPQueryParams = {query:''};
   public previousURL:String="allresults";
 
   // criteriaObject:CriteriaObject={searchQuery:this.getSearchQuery(),requestType:'POST',user_id:this.getLoggedInUserDetails()._id};

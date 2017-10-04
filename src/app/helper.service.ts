@@ -29,10 +29,9 @@ export class Helper {
    private backendURL_heroku = this.global.getbackendURL_heroku();
   // private backendURL_heroku = 'http://localhost:3000';
   triggerIconGridComponentGetImagesEvent = new EventEmitter();
+  showNotificationBarEvent = new EventEmitter();
   getResultEvent = new EventEmitter();
-  constructor(private http: Http, private global:Global){
-
-  }
+  constructor(private http: Http, private global:Global){}
   get nativeWindow (): any {
     return getWindow();
   }

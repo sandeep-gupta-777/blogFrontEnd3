@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
   showErrorMessage = false;
   helper_message = "";
 
-  constructor(private helper:Helper,private global:Global, private router:Router) { }
+  constructor(private helper:Helper,private global:Global, private router:Router,private activatedRoute:ActivatedRoute) {
+  }
   @ViewChild('f') form;
   onSubmit() {
       console.log(this.form);
@@ -31,6 +32,8 @@ export class LoginComponent implements OnInit {
           // this.router.navigateByUrl(this.global.previousSRPURL);
           this.router.navigate([this.global.previousURL],{queryParams:this.global.previousSRPQueryParams});
           this.global.setLoggedInUserDetails(data.user);
+          this.helper.showNotificationBarEvent.emit({message:'You are logged in!'});
+
         },
         error => {
 
@@ -49,6 +52,13 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    if( localStorage.getItem('token')!== null){
+      setTimeout(()=>{
+        this.router.navigate([this.global.previousURL],{queryParams:this.global.previousSRPQueryParams});
+
+      },500);
+
+    }
 
   }
 

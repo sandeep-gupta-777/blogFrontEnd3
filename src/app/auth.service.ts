@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 import {Observable} from "rxjs/Observable";
+import {Global} from "./Global.service";
 
 @Injectable()
 export class AuthService implements CanActivate{
@@ -11,11 +12,12 @@ export class AuthService implements CanActivate{
        return true;
      }
      else {
-       setTimeout(()=>{this.router.navigate(['login'])},0)
+       this.global.previousURL = window.location.pathname;
+       setTimeout(()=>{this.router.navigate(['login'])},0);
        return false;
      }
   }
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private global: Global) { }
 
 }

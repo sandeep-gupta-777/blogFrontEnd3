@@ -138,9 +138,9 @@ export class BlogGridComponent implements OnInit {
         //   this.parent='';
         //   this.router.navigate(['allresults'],{queryParams:{query:criteriaObj.searchQuery}});
         // }
-        else {
+        else if(tempUrl.indexOf('/allresults?query')) {
           this.parent='';
-          // this.router.navigate(['allresults'],{queryParams:{query:criteriaObj.searchQuery}});//TODO: change this
+          this.router.navigate(['allresults'],{queryParams:{query:criteriaObj.searchQuery}});//TODO: change this
         }
       // }
 

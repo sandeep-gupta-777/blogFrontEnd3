@@ -57,7 +57,7 @@ const appRoutes: Routes = [
   {component: BlogGridComponent, path: 'results'},
   {component: HomeScreenComponent, path: 'home'},
   {component: AdminComponent, path: 'admin'},
-  {component: DashboardComponent, path: 'dashboard', children: [
+  {component: DashboardComponent, path: 'dashboard',canActivate:[AuthService], children: [
     {component: BlogGridComponent, path: 'Drafts'},
     {component: BlogGridComponent, path: 'likedBlogs'},
     {component: BlogGridComponent, path: 'writtenBlogs'},
@@ -66,8 +66,8 @@ const appRoutes: Routes = [
   {component: BlogGridComponent, path: 'allresults'},
   {component: BlogDisplayComponent, path: 'blogdisplay/:id'},
   {component: TextEditorInterfaceComponent, path: 'new/blog',canActivate:[AuthService]},
-  {component: TextEditorInterfaceComponent, path: 'blogEdit'},
-  {component: TextEditorInterfaceComponent, path: 'blogEdit/:id'},
+  {component: TextEditorInterfaceComponent, path: 'blogEdit',canActivate:[AuthService]},
+  {component: TextEditorInterfaceComponent, path: 'blogEdit/:id',canActivate:[AuthService]},
   // {component: BlogGridComponent, path: ''},
   { path: '', redirectTo: 'allresults',pathMatch: 'full'},
   { path: '404', component: NotFoundComponent }
