@@ -1,18 +1,12 @@
 <div class="container-fluid ">
   <div class="row"  [ngClass]="{'blackBackground':showMenu && isSmallSizeDevice}">
-    <!--<div class="col-xs-12 hidden-lg center-vertical" *ngIf="isSmallSizeDevice" style="height: 40px"  (click)="showMenu = !showMenu">-->
-      <!--<i class="glyphicon glyphicon-menu-hamburger" style="color: white; font-size: 35px; "></i>-->
-    <!--</div>-->
+
     <div class="col-xs-12 col-md-2 nopadding" >
       <!--<div style="position: fixed; z-index: 1" *ngIf="showMenu">-->
       <div id="headerFixed"  style="position: fixed;top:0px;bottom:0px;left: 0px;overflow-y: auto; z-index: 1;" >
         <app-header-component></app-header-component>
-        <!--<h1>hello</h1>-->
       </div>
     </div>
-    <!--<div class="col-xs-2">-->
-    <!--&lt;!&ndash;<app-header-component ></app-header-component>&ndash;&gt;-->
-    <!--</div>-->
 
     <div class="col-xs-12 col-md-8 nopadding ">
       <router-outlet></router-outlet>
@@ -27,37 +21,4 @@
   </div>
 
 </div>
-
-<!--<app-footer-component ></app-footer-component>-->
-
-<!--<div  style="width: 16%;position: fixed;z-index: 1">-->
-<!--&lt;!&ndash;<app-header-component ></app-header-component>&ndash;&gt;-->
-<!--</div>-->
-<!--&lt;!&ndash;style is to keep footer at at bottom&ndash;&gt;-->
-<!--<div class="wrapper border" style="min-height:70%;z-index: 100 ">-->
-<!--&lt;!&ndash;<app-sidebar></app-sidebar>&ndash;&gt;-->
-<!--&lt;!&ndash;<app-image-side-panel style="position: fixed;"></app-image-side-panel>&ndash;&gt;-->
-<!--<router-outlet></router-outlet>-->
-<!--&lt;!&ndash;<app-blog-display></app-blog-display>&ndash;&gt;-->
-<!--&lt;!&ndash;<app-image-modal></app-image-modal>&ndash;&gt;-->
-<!--&lt;!&ndash;<app-thread class="border1"></app-thread>&ndash;&gt;-->
-<!--</div>-->
-
-
-<!--<app-admin></app-admin>-->
-
-
-<!--<app-thread class="active"></app-thread>-->
-
-<!--<text-editor [elementId]="'post-body'" (onEditorKeyup)="onBodyTextEditorKeyUp($event)"></text-editor>-->
-
-<!--<br>-->
-
-<!--<div [innerHTML]="blogContent"> </div>-->
-<!--{{blogContent}}-->
-<!--<br>-->
-
-<!--<button (click)="doSomething()"> click me!</button>-->
-<!--<app-text-editor-interface></app-text-editor-interface>-->
-
 
