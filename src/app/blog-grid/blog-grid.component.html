@@ -48,7 +48,9 @@
       <!--</div>-->
     </div>
 
-    <div class="row " *ngFor="let result of resultsArray|sortArrayBy : sortbyPropery" style="margin-bottom: 10px">
+    <!--<div class="row " *ngFor="let result of resultsArray|sortArrayBy : sortbyPropery" style="margin-bottom: 10px">-->
+    <!--add pipe again-->
+    <div class="row " *ngFor="let result of resultsArray" style="margin-bottom: 10px">
       <!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_cards-->
       <div class="col-xs-12 card1">
         <!--<a *ngIf="isUserAlsoOwnerOfThisBlogPost(result.blogAuthor_id)" role="button" class="btn btn-danger"-->

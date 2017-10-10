@@ -1,9 +1,0 @@
-.border{
-  border: 5px solid white;
-}
-
-.centering{
-  /*https://stackoverflow.com/questions/10088706/twitter-bootstrap-how-to-center-elements-horizontally-or-vertically*/
-  float:none;
-  margin:0 auto
-}

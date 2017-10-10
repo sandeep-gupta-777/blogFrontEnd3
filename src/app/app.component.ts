@@ -3,10 +3,6 @@ import {SiteUser} from "./models";
 import {Helper} from "./helper.service";
 import {Global} from "./Global.service";
 import {EventService} from "./event.service";
-// let  Prism = require('prismjs');
-// import { Helper } from './helper.service';
-// import {SiteUser} from "./models";
-// import {Global} from "./Global.service";
 
 @Component({
   selector: 'my-app',
@@ -23,40 +19,11 @@ export class AppComponent implements OnInit{
 
    }
 
-
+test(){
+    alert();
+}
 
   ngOnInit(){
-
-    // The code snippet you want to highlight, as a string
-    var code = "" +
-      "var data = 1;" +
-      "var data = 1;" +
-      "var data = 1;" +
-      "var data = 1;" +
-      "var data = 1;" +
-      "var data = 1;" +
-      "var data = 1;" +
-      "var data = 1;" +
-      "var data = 1;" +
-      "var data = 1;" +
-      "var data = 1;" +
-      "var data = 1;" +
-      "var data = 1;" +
-      "";
-
-// Returns a highlighted HTML string
-//     var html = Prism.highlight(code, Prism.languages.javascript);
-//     this.html = html;
-//     console.log(html);
-
-    if(window.screen.height>768){
-      this.isSmallSizeDevice = false;
-      this.showMenu = true;
-    }
-    else {
-      this.isSmallSizeDevice = true;
-      this.showMenu= false;
-    }
 
     /*if localstorage is not empty fetch the user details and set to Global.service.ts
     this will be required when user refreshes the page*/
