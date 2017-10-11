@@ -14,6 +14,17 @@ export class Global{
       });
 
   }
+
+  blogDisplayURL = 'other/blogdisplay/';
+  loginURL = 'other/login/';
+  signUpURL = 'other/signup/';
+  blogEditURL = 'other/blogEdit/';
+  likedBlogsURL = 'other/dashboard/likedBlogs/';
+  writtenBlogsURL = 'other/dashboard/writtenBlogs/';
+  draftsURL = 'other/dashboard/drafts/';
+  dashboardURL = 'other/dashboard/';
+
+
   private _loggedInUserDetails:SiteUser;
   private _seachQuery:string;
   // private _backendURL_heroku = 'https://shielded-harbor-17443.herokuapp.com';

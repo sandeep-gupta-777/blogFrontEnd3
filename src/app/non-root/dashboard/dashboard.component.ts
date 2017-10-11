@@ -120,16 +120,22 @@ export class DashboardComponent implements OnInit{
   ngOnInit(): void {
     this.criteriaObj.source = "from dashboard";
     let currentURL= window.location.pathname;
-    if(currentURL==='/icons'){
-      setTimeout(()=>{//may not be needed
-        this.helper.triggerIconGridComponentGetImages('AllIcons','POST',  this.global.getSearchQuery());
-      },0);
+    debugger;
+    if(currentURL===this.global.dashboardURL){
+      // setTimeout(()=>{//may not be needed
+      //   this.helper.triggerIconGridComponentGetImages('AllIcons','POST',  this.global.getSearchQuery());
+      // },0);
+      this.highlightTab = 'dashboard';
+      alert();
     }
-    else if(currentURL==='/dashboard/likedBlogs'){
+    else if(currentURL===this.global.likedBlogsURL){
         this.highlightTab = 'Liked';
     }
-    else if(currentURL==='/dashboard/writtenBlogs' ){
+    else if(currentURL===this.global.writtenBlogsURL ){
       this.highlightTab = 'My Blogs';
+    }
+    else if(currentURL===this.global.draftsURL ){
+      this.highlightTab = 'drafts';
     }
 
   //   this.uploader.onBuildItemForm = (fileItem: any, form: any) => {

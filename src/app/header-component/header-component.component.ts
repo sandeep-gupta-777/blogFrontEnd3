@@ -1,9 +1,7 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component,  OnInit} from '@angular/core';
 import {Helper} from '../helper.service';
 import {ActivatedRoute, NavigationEnd, Params, Router} from "@angular/router";
 import {Global} from "../Global.service";
-import {isUndefined} from "util";
-import {factoryOrValue} from "rxjs/operator/multicast";
 import {CriteriaObject} from "../models";
 import {EventService} from "../event.service";
 import set = Reflect.set;
@@ -125,21 +123,21 @@ export class HeaderComponentComponent implements OnInit {
     }
     this.global.previousURL = 'new/blog';
     this.global.previousSRPQueryParams = {query:''};
-      this.router.navigate(['new/blog']);
+      this.router.navigate(['other/new/blog']);
   }
 
   goToLoginPage(){
 
     this.global.previousURL = window.location.pathname;
     this.global.previousSRPQueryParams = this.activatedRoute.snapshot.queryParams;
-    this.router.navigate(['/login']);
+    this.router.navigate(['other/login']);
 
   }
   logout(){
     localStorage.clear();
     this.global.previousURL = window.location.pathname;
     this.global.previousSRPQueryParams = this.activatedRoute.snapshot.queryParams;
-    this.router.navigate(['login']);
+    this.router.navigate(['other/login']);
     this.helper.showNotificationBarEvent.emit({message:'You are logged out!'});
   };
 

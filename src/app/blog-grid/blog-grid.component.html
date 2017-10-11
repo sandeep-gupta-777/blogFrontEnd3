@@ -81,7 +81,7 @@
           <div class="pull-right">
             <span><b>{{result.blogAuthor_fullName}}</b></span>
             <span>{{result.blogCreationDate|date:'mediumDate'}}</span>
-            <a [routerLink]="'/blogEdit/' + result._id" target="_blank" style="color:#000;"> <i
+            <a [routerLink]="'/'+global.blogEditURL + result._id" style="color:#000;"> <i
               *ngIf="isUserAlsoOwnerOfThisBlogPost(result.blogAuthor_id)" class="fa fa-edit">Edit</i></a>
             <i class="fa fa-heart-o">{{result.blogLikes.length}}</i>
             <i class="fa fa-comment-o">{{result.blogCommentsCount}}</i></div>

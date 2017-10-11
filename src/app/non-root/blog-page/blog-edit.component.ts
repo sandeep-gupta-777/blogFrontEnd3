@@ -139,9 +139,7 @@ export class BlogPageComponent implements OnInit, AfterViewInit, OnDestroy, OnCh
   }
 
   showPreviewClicked(){
-      // this.router.navigate(['/blogdisplay/'+this._id]);
-    // window.open('')
-    window.open('http://localhost:4200/blogdisplay/'+ this._id, '_blank');//TODO: show in pop up rather that in a new window
+    window.open('http://localhost:4200/' +this.global.blogDisplayURL + this._id, '_blank');//TODO: show in pop up rather that in a new window
   }
 
 

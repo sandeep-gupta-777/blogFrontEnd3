@@ -91,7 +91,7 @@ export class BlogGridComponent implements OnInit {
 
     this.global.previousSRPURL = window.location.pathname;
 
-      this.router.navigateByUrl(`/blogdisplay/${blogPost._id}`); //TODO: use subscribe and execute rest of the code in it
+      this.router.navigateByUrl(`${this.global.blogDisplayURL  + blogPost._id}`); //TODO: use subscribe and execute rest of the code in it
     setTimeout(()=>{
       /*why this is needed?
        we want below code to execute AFTER component is finished loading; this.showSidePanel = true will start the loading
@@ -251,6 +251,6 @@ export class BlogGridComponent implements OnInit {
   criteriaObj:CriteriaObject =this.global.getCriteriaObject();
 
 
-  constructor(private sharedService: Shared, private http: Http, private helper: Helper, private global: Global, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private sharedService: Shared, private http: Http, private helper: Helper, public global: Global, private router: Router, private activatedRoute: ActivatedRoute) {
   }
 }

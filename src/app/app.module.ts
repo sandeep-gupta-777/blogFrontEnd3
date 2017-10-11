@@ -10,23 +10,19 @@ import {Shared} from "./shared.service";
 import { HeaderComponentComponent } from './header-component/header-component.component';
 import { FooterComponentComponent } from './footer-component/footer-component.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { BlogGridComponent } from './blog-grid/blog-grid.component';
 import {EventService} from "./event.service";
 import {ComponentService} from "./component.service";
 import {AuthService} from "./auth.service";
-import {TrimStringPipe} from "./trim-string.pipe";
-import {NonRootModule} from "./non-root/nonRootModule";
-import {SortArrayByPipe} from "./sort-array-by.pipe";
-
-
+import {BlogGridComponent} from "./blog-grid/blog-grid.component";
+import {SharedModule} from "./sharedModule";
 
 // routes
 const appRoutes: Routes = [
-  // {component: BlogGridComponent, path: 'results'},
-  // {component: BlogGridComponent, path: 'allresults'},
-  {loadChildren: './non-root/nonRootModule#NonRootModule', path: 'other'}
-  // { path: '', redirectTo: 'allresults',pathMatch: 'full'},
-  // { path: '404', component: NotFoundComponent }
+  {component: BlogGridComponent, path: 'results'},
+  {component: BlogGridComponent, path: 'allresults'},
+  {loadChildren: './non-root/nonRootModule#NonRootModule', path: 'other'},
+  { path: '', redirectTo: 'allresults',pathMatch: 'full'},
+  { path: '404', component: NotFoundComponent }
 ];
 
 
@@ -52,7 +48,8 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes )
+    RouterModule.forRoot(appRoutes ),
+    SharedModule
     // NonRootModule
   ],
   providers: [

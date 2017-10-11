@@ -1,5 +1,4 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {SiteUser} from "./models";
 import {Helper} from "./helper.service";
 import {Global} from "./Global.service";
 import {EventService} from "./event.service";

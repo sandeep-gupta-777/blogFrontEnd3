@@ -19,22 +19,23 @@ import {HttpModule} from "@angular/http";
 import {BlogGridComponent} from "../blog-grid/blog-grid.component";
 import {AuthService} from "../auth.service";
 import {RouterModule, Routes} from "@angular/router";
+import {SharedModule} from "../sharedModule";
 
 const appRoutes: Routes = [
   {component: LoginComponent, path: 'login'},
   {component: LoginComponent, path: 'login/:nextURL'},
   {component: SignupComponent, path: 'signup'},
   {component: SignupComponent, path: 'signup/:nextURL'},
-  {component: DashboardComponent, path: 'dashboard',canActivate:[AuthService], children: [
-    {component: BlogGridComponent, path: 'Drafts'},
+  {component: DashboardComponent, path: 'dashboard', children: [//TODO: add canActivate in routes
+    {component: BlogGridComponent, path: 'drafts'},
     {component: BlogGridComponent, path: 'likedBlogs'},
     {component: BlogGridComponent, path: 'writtenBlogs'},
     {component: BlogGridComponent, path: 'upload'}
   ]},
   {component: BlogDisplayComponent, path: 'blogdisplay/:id'},
-  {component: TextEditorInterfaceComponent, path: 'new/blog',canActivate:[AuthService]},
-  {component: TextEditorInterfaceComponent, path: 'blogEdit',canActivate:[AuthService]},
-  {component: TextEditorInterfaceComponent, path: 'blogEdit/:id',canActivate:[AuthService]},
+  {component: TextEditorInterfaceComponent, path: 'new/blog'},
+  {component: TextEditorInterfaceComponent, path: 'blogEdit'},
+  {component: TextEditorInterfaceComponent, path: 'blogEdit/:id'},
 ];
 
 
@@ -43,23 +44,20 @@ const appRoutes: Routes = [
   declarations:[
     LoginComponent,
     SignupComponent,
-    BlogGridComponent,
     DashboardComponent,
     TagsInputDirective,
     BlogPageComponent,
     BlogDisplayComponent,
     TextEditorInterfaceComponent,
-    SortArrayByPipe,
     ThreadComponent,
     CommentComponent,
-    TrimStringPipe,
   ],
-  exports:[SortArrayByPipe],
   imports:[
     CommonModule,
-    FormsModule,
+    RouterModule.forChild(appRoutes ),
+    SharedModule,
     HttpModule,
-    RouterModule.forChild(appRoutes )
+    FormsModule
   ]
 
 })
