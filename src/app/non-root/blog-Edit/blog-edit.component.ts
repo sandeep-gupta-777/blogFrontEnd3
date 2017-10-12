@@ -1,18 +1,18 @@
-
+import   "../../../../node_modules/tinymce/tinymce.js";
+import "../../../../node_modules/tinymce/themes/modern/theme.js";
+import "../../../../node_modules/tinymce/plugins/codesample/plugin.js";
+import "../../../../node_modules/tinymce/plugins/autoresize/plugin.js";
 
 import {
   Component, OnDestroy, AfterViewInit, EventEmitter, Input, Output, OnInit, OnChanges,
   ChangeDetectorRef
 } from '@angular/core';
-import {factoryOrValue} from "rxjs/operator/multicast";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BlogPost} from "../../models";
 import {Shared} from "../../shared.service";
 import {Helper} from "../../helper.service";
 import {Global} from "../../Global.service";
 import {ComponentService} from "../../component.service";
-// import {win} from "@angular/platform-browser/src/browser/tools/browser";
-// let  Prism = require('prismjs');
 
 
 declare let tinymce: any;
@@ -152,16 +152,16 @@ export class BlogPageComponent implements OnInit, AfterViewInit, OnDestroy, OnCh
     tinymce.init({
       selector: '#' + elementId,
       plugins: [
-        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-        'searchreplace wordcount visualblocks visualchars code fullscreen',
-        'insertdatetime media nonbreaking save table contextmenu directionality',
-        'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help autoresize',
+        'codesample autoresize',
       ],
+      // external_plugins: {
+      //   'testing': 'http://www.testing.com/plugin.min.js',
+      //   'maths': 'http://www.maths.com/plugin.min.js'
+      // },
 
       autoresize_bottom_margin: 100,
       // toolbar: "codesample",
-      toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-      toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+      toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | codesample',
       image_advtab: true,
       advlist_bullet_styles: "square",  // only include square bullets in list
       skin_url: this.baseURL + 'assets/skins/lightgray',

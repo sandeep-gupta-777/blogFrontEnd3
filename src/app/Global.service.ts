@@ -24,13 +24,14 @@ export class Global{
   draftsURL = 'other/dashboard/drafts/';
   dashboardURL = 'other/dashboard/';
 
+  public _backendRoute_AllResults = 'allresults';
+
 
   private _loggedInUserDetails:SiteUser;
   private _seachQuery:string;
   // private _backendURL_heroku = 'https://shielded-harbor-17443.herokuapp.com';
   private _backendURL_heroku = 'http://localhost:3000';
   //backend routes
-  public _backendRoute_AllResults = 'allresults';
 
   public resultsArray: [BlogPost];
   public blogCommentsArray: BlogComment[];

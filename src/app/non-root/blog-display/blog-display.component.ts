@@ -130,7 +130,7 @@ export class BlogDisplayComponent implements OnInit {
 
   openBlogEditorPage() {
     // this.showSidePanel = true;
-    this.router.navigateByUrl(`/blogEdit/${this.blogPost._id}`); //TODO: use subscribe and execute rest of the code in it
+    this.router.navigateByUrl(this.global.blogEditURL+this.blogPost._id); //TODO: use subscribe and execute rest of the code in it
 
     setTimeout(() => {
       /*why this is needed?

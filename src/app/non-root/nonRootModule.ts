@@ -6,7 +6,7 @@ import {LoginComponent} from "./login/login.component";
 import {SignupComponent} from "./signup/signup.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {TagsInputDirective} from "./tagsinput/tagsinput.component";
-import {BlogPageComponent} from "./blog-page/blog-edit.component";
+import {BlogPageComponent} from "./blog-Edit/blog-edit.component";
 import {BlogDisplayComponent} from "./blog-display/blog-display.component";
 import {TextEditorInterfaceComponent} from "./text-editor-interface/text-editor-interface.component";
 import {SortArrayByPipe} from "../sort-array-by.pipe";
