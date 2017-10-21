@@ -6,16 +6,21 @@ import {HttpModule} from "@angular/http";
 import {TrimStringPipe} from "./trim-string.pipe";
 import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
+import {SafePipe} from "./safe.pipe";
 
 @NgModule({
   declarations:[
     BlogGridComponent,
     SortArrayByPipe,
     TrimStringPipe,
+    SafePipe
   ],
   exports:[BlogGridComponent,
     SortArrayByPipe,
-    TrimStringPipe,],
+    TrimStringPipe,
+    SafePipe
+
+  ],
   imports:[
     CommonModule,
     HttpModule,

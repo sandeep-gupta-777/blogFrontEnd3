@@ -19,30 +19,22 @@ export class BlogGridComponent implements OnInit {
 
 
   lastCall;
-  debounce(searchQuery,interval=0) {//TODO: shift this to helper class
-    //https://stackoverflow.com/questions/18177174/how-to-limit-handling-of-event-to-once-per-x-seconds-with-jquery-javascript
-    this.helper.notifyKeywordChangeEvent.emit(searchQuery);
-    this.criteriaObj.searchQuery = searchQuery;
-    clearTimeout(this.lastCall);
-    this.lastCall = setTimeout(() => {
-      this.triggerAllResultsObservable(searchQuery);
-    }, interval);
-  }
 
   triggerAllResultsObservable(searchQuery?:string){
+    this.helper.notifyKeywordChangeEvent.emit(searchQuery);
+
     //navigate to http://localhost:4200/icons page is not already navigated
     if(this.router.url !== "/"+this.global._backendRoute_AllResults)//these are frontend routes but with same value
       this.router.navigate(["/"+ this.global._backendRoute_AllResults]);
-    if (!isUndefined(searchQuery)) {
+    // if (!isUndefined(searchQuery)) {
       this.searchQuery = searchQuery;
       this.global.setSearchQuery(searchQuery);
-    }
+    // }
 
     setTimeout(()=>{
+      this.criteriaObj.searchQuery = searchQuery;
       this.criteriaObj.url = this.global._backendRoute_AllResults;
-
       this.helper.triggergetResultEvent(this.criteriaObj);
-
     }, 0);
     // this.helper.triggerIconGridComponentGetImages('AllIcons','POST',  newValue);
   }
@@ -53,8 +45,6 @@ export class BlogGridComponent implements OnInit {
     console.log(this.resultsArray);
     return this.resultsArray;
   }
-
-
 
 
   showTimeOutErrorIfNeeded(){
@@ -88,9 +78,9 @@ export class BlogGridComponent implements OnInit {
 
   }
   openBlogDisplayPage(blogPost:BlogPost){
-
     this.global.previousSRPURL = window.location.pathname;
-
+    this.global.previousSRPQueryParams = this.activatedRoute.snapshot.queryParams;
+    // debugger;
       this.router.navigateByUrl(`${this.global.blogDisplayURL  + blogPost._id}`); //TODO: use subscribe and execute rest of the code in it
     setTimeout(()=>{
       /*why this is needed?
@@ -122,8 +112,11 @@ export class BlogGridComponent implements OnInit {
 
   // console.log('just before the subscription');
     //TODO: check if this can be moved to helper function
-    this.triggerGetResultsEventSubscription = this.helper.getResultEvent.subscribe((criteriaObj:any)=>{//change any to CriteriaObj
+    this.triggerGetResultsEventSubscription = this.helper.getResultEvent.debounceTime(500)
+      // .distinctUntilChanged() is not working properly
+      .subscribe((criteriaObj:any)=>{//change any to CriteriaObj
 
+      this.helper.showProgressBarEvent.emit(true);
       criteriaObj.searchQueryTimeStamp=Date.now();
       if(this.global.getLoggedInUserDetails())
       criteriaObj.user_id = this.global.getLoggedInUserDetails()._id;
@@ -151,12 +144,20 @@ export class BlogGridComponent implements OnInit {
         this.subscriptionPost = this.helper.makePostRequest(criteriaObj.url,criteriaObj).subscribe(
 
           (value:any) =>{
-            console.log('recieved results from server');
+
+            if(this.global.getSearchQuery()===this.searchQuery){
+              this.helper.showProgressBarEvent.emit(false);
+            }
+            else {
+              this.helper.showProgressBarEvent.emit(true);
+            }
+            console.log('recieved results from server',value.value.searchQuery);
+
             if(value.searchQueryTimeStamp< this.searchQueryTimeStamp){
-              console.log(value);
               console.log('old search...discarded');
               return;
             }
+            this.searchQueryTimeStamp = value.searchQueryTimeStamp;
             value = value.value;
             this.showLoadingIcon=false;
             // this.imageContainers = value;
@@ -210,7 +211,6 @@ export class BlogGridComponent implements OnInit {
     }
   }
   ngOnDestroy(): void {
-    // alert('destroying grid');
 
     if(this.subscriptionGet)
       this.subscriptionGet.unsubscribe();
@@ -244,7 +244,7 @@ export class BlogGridComponent implements OnInit {
   newResultsToBeLoadedCount = 1;//TODO: make it a global variable
   private subscriptionPost;
   resultsArray: BlogPost[];
-  loadingArray = [1, 2];
+  loadingArray = [1, 2,3,4,5,6,7,8,9,0];
   searchQueryTimeStamp;
   parent;
   timeOutRef;

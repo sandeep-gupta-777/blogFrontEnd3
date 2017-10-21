@@ -28,8 +28,6 @@ export class ThreadComponent implements OnInit {
   }
 
   updateThreadEvent(comment: BlogComment) {
-    console.log('pushing following comment');
-    console.log(comment);
     this.commentArray.unshift(comment);
     console.log(this.commentArray);
     this.showAddCommentBox = false;
@@ -64,14 +62,11 @@ export class ThreadComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.commentBlog_id);
     //get all the comments for current blog
     this.helper.makePostRequest('blogComments',{commentBlog_id:this.commentBlog_id}).subscribe(
       (value)=>{
-        console.log(value);
         this.commentArray = value;
         this.global.blogCommentsArray = this.commentArray;
-        console.log(this.global.blogCommentsArray);
       }
     );
 

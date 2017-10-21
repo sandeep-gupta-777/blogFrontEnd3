@@ -1,0 +1,32 @@
+#parent{
+  border: 1px solid white;
+  margin-top: 0;
+  width: 100%;
+  height: 4px;
+  background-color: white;
+}
+
+#animateMe{
+  width: 50%;
+  height: 3px;
+  background-color: black;
+  overflow: hidden;
+  animation: test 1s 0s linear infinite, last linear 1s 0s infinite;
+}
+
+@keyframes test {
+  0%{
+    background-color: red;
+  }
+  100%{
+    background-color: blue;
+  }
+}
+@keyframes last {
+  0%{
+    transform: translate(-100%,0);
+  }
+  100%{
+    transform: translate(200%,0);
+  }
+}

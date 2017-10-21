@@ -58,6 +58,10 @@ export class BlogDisplayComponent implements OnInit {
 
   }
 
+  goToPreviousSRP(){
+    this.router.navigate([this.global.previousSRPURL],{queryParams:this.global.previousSRPQueryParams});
+  }
+
   // isUserAlsoOwnerOfThisImage(imageAuthor_id){
   //   //TODO: this method is called by 4 time, debug it
   //   let temp = this.global.getLoggedInUserDetails();
@@ -74,17 +78,6 @@ export class BlogDisplayComponent implements OnInit {
     if (!(temp && this.blogPost)) return false;
     return this.blogPost.blogAuthor_id === this.global.getLoggedInUserDetails()._id;
   }
-
-  triggerAllIconObservable(searchQuery) {
-    // if(searchQuery)
-    // this.searchQuery = searchQuery;
-    this.helper.notifyKeywordChangeEvent.emit(searchQuery);
-    this.helper.setKeywordIntoSearchBarEvent.emit(searchQuery);
-    this.helper.triggerIconGridComponentGetImages('AllIcons', 'POST', searchQuery);
-
-  }
-
-
 
   triggerGetResultEvent(searchQuery) {//TODO: this exact same method is written in header, put it in helper file
 
@@ -111,19 +104,10 @@ export class BlogDisplayComponent implements OnInit {
     this.editMode = !this.editMode;
     if (this.editMode) {
       // this.makeTagsEditable();
-      //
     }
     else {
-
       //make a call to save this object
-      this.helper.saveEditedImageContainer(this.imageContainer).subscribe(
-        (value) => {
-          console.log(value)
-        }
-      );
-
     }
-
 
   }
 
@@ -143,12 +127,9 @@ export class BlogDisplayComponent implements OnInit {
 
   ngOnInit(): void {
     this.criteriaObj.source = 'from blog display';
-    console.log('ngoninit of blog-display.component.ts');
-    console.log(this.blogPost);
 
      this._id = this.route.snapshot.params['id'];
 
-    console.log('entering ngOnInit in blog display...');
     // this.getImageContainersSubscription = this.shared.getImageContainers.subscribe(
     //   (value)=>{
     //     console.log("in ng on init of sidebar1.component.ts");

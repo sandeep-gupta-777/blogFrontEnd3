@@ -1,6 +1,7 @@
+<br>
 <div class="container">
   <div class="row">
-    <a role="button" *ngIf="global.resultsArray" class="btn btn-default" [routerLink]="global.previousSRPURL"><i
+    <a role="button" *ngIf="global.resultsArray" class="btn btn-default" (click)="goToPreviousSRP()"><i
       class="fa fa-arrow-left"></i> Back to Results</a>
     <button *ngIf="isUserAlsoOwnerOfThisBlogPost()" class="btn btn-danger"
             (click)="openBlogEditorPage()"><a routerLink="/blogEdit"></a>{{editMode?"Save":"Edit"}}
@@ -42,7 +43,7 @@
 
     <!--blog body starts here-->
     <div class="col-xs-12" style="background-color: white">
-      <div class="bodyText" style="font-family: sans-serif;" [innerHTML]="blogPost.blogHTML">
+      <div class="bodyText" style="font-family: sans-serif;" [innerHTML] = " blogPost.blogHTML | safeHTML">
         <!--body here-->
       </div>
     </div>

@@ -3,7 +3,7 @@
 
 <div *ngIf="parent!=='dashaboard'" class="container" style="border-bottom: solid 1px white;">
   <!--<div style="color:white;font-size: 60px; "><i class="fa fa-search-plus" style="margin-right: 1%"></i>Search Results</div>-->
-  <input id="searchT" [ngModel]="searchQuery" (ngModelChange)="debounce($event,200)"
+  <input id="searchT" [(ngModel)]="searchQuery" (ngModelChange)="triggerAllResultsObservable($event,200)"
          placeholder="Search..." autofocus type="search"
          style="width: 100%; background: transparent; border: hidden;color: white;">
 </div>
@@ -98,41 +98,36 @@
 
     <!--Loading starts-->
     <div *ngIf="showLoadingIcon">
+      <!--placeholder starts-->
       <div class="row " *ngFor="let result of loadingArray" style="margin-bottom: 10px">
         <!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_cards-->
         <div style="min-height: 150px; overflow: auto" class="col-xs-12 card1">
-
           <br><br>
           <!--image starts here-->
-          <div class="col-md-2 col-xs-12" style="background-color: #eef3f6; height: 75px">
-            <!--<img class="img-responsive" style="border: 1px black solid"-->
-            <!--src="https://ciphertrick.com/wp-content/uploads/2017/03/featured-1-900x420.jpg"-->
-            <!--alt="">-->
+          <div class="col-md-2 col-xs-12 animateMe" style="      height: 75px">
           </div>
           <!--image ends here-->
           <div class="col-md-10 col-xs-12" style="min-height: 80px">
             <!--result title here-->
-            <h3 class="linkCursor"
-                style="background-color:#eef3f6;height: 20px; margin-top: 0px;font-family: sans-serif;font-weight: bold"></h3>
-            <div class="col-md-8 col-xs-12" style="background-color: #eef3f6; height: 12px">
+            <h3 class="linkCursor animateMe"
+                style="         height: 20px; margin-top: 0px;font-family: sans-serif;font-weight: bold"></h3>
+            <!--result title ends here-->
+            <div class="col-md-8 col-xs-12 animateMe" style="background-color: #eef3f6; height: 12px">
             </div>
             <br>
-            <div class="col-md-7 col-xs-12" style="background-color: #eef3f6; height: 12px;">
+            <div class="col-md-7 col-xs-12 animateMe" style="       height: 12px;">
             </div>
           </div>
           <!--Metadata starts-->
-          <div class="col-md-4 col-md-offset-8 col-xs-12"
-               style="height: 20px; margin-bottom: 10px; background-color:#eef3f6;">
+          <div class="col-md-4 col-md-offset-8 col-xs-12 animateMe"
+               style="height: 20px; margin-bottom: 10px;     ">
 
           </div>
           <!--Metadata ends-->
-
-
         </div>
-        <!--<br><br><br><br><br><br><br>-->
-        <!--<br>-->
-
       </div>
+      <!--placeholder ends-->
+
     </div>
 
     <!--Loading ends-->

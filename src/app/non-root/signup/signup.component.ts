@@ -44,7 +44,7 @@ export class SignupComponent implements OnInit {
           localStorage.setItem('token',data.token);
           localStorage.setItem('userID',data.user._id);
           // this.router.navigateByUrl('/');
-          this.router.navigate([this.global.previousURL],{queryParams:this.global.previousSRPQueryParams});
+          this.router.navigate([this.global.previousSRPURL],{queryParams:this.global.previousSRPQueryParams});
           this.global.setLoggedInUserDetails(user);
         },
         error => {console.log(error)}

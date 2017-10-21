@@ -15,6 +15,7 @@ import {ComponentService} from "./component.service";
 import {AuthService} from "./auth.service";
 import {BlogGridComponent} from "./blog-grid/blog-grid.component";
 import {SharedModule} from "./sharedModule";
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 // routes
 const appRoutes: Routes = [
@@ -22,7 +23,7 @@ const appRoutes: Routes = [
   {component: BlogGridComponent, path: 'allresults'},
   {loadChildren: './non-root/nonRootModule#NonRootModule', path: 'other'},
   { path: '', redirectTo: 'allresults',pathMatch: 'full'},
-  { path: '404', component: NotFoundComponent }
+  { path: '**', component: NotFoundComponent }
 ];
 
 
@@ -32,7 +33,9 @@ const appRoutes: Routes = [
     HeaderComponentComponent,
     FooterComponentComponent,
     // BlogGridComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ProgressBarComponent,
+
     // LoginComponent,
     // SignupComponent,
     // DashboardComponent,
@@ -48,7 +51,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes ),
+    RouterModule.forRoot(appRoutes),
     SharedModule
     // NonRootModule
   ],

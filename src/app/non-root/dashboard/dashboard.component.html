@@ -8,7 +8,7 @@
 <div class="container">
     <ul class="nav nav-tabs">
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  [ngClass]="{'active':highlightTab==='dashboard'}"
-          (click)="uploadBoxOpen=true;highlightTab='Write'" #upload><a routerLink="/dashboard" >Write</a></li>
+          (click)="uploadBoxOpen=true;highlightTab='Write'" #upload><a routerLink="/other/dashboard" >Write</a></li>
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [ngClass]="{'active':highlightTab==='My Blogs'}"
           (click)="getUsersBlogs()" #MyImages><a routerLink="writtenBlogs" [queryParams]="{parent:'dashboard'}"> My Blogs</a></li>
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [ngClass]="{'active':highlightTab==='Liked'}"

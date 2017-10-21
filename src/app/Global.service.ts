@@ -38,7 +38,6 @@ export class Global{
 
   public previousSRPURL ;
   public previousSRPQueryParams:any = {query:''};
-  public previousURL:String="allresults";
 
   // criteriaObject:CriteriaObject={searchQuery:this.getSearchQuery(),requestType:'POST',user_id:this.getLoggedInUserDetails()._id};
 

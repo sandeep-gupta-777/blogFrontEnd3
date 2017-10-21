@@ -13,16 +13,19 @@ export class AppComponent implements OnInit{
   showMenu = true;
   isSmallSizeDevice=false;
   html:string;
+  showProgressBar:boolean=true;
 
   constructor(private helper:Helper, private eventService:EventService,private global:Global,private ref : ChangeDetectorRef){
 
    }
 
-test(){
-    alert();
-}
 
   ngOnInit(){
+  this.showProgressBar= false;
+
+    this.helper.showProgressBarEvent.subscribe(value=>{
+      this.showProgressBar=value;
+    });
 
     /*if localstorage is not empty fetch the user details and set to Global.service.ts
     this will be required when user refreshes the page*/

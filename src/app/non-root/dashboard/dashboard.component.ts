@@ -1,10 +1,5 @@
 import {Component, ElementRef, OnInit} from "@angular/core";
-// import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import 'rxjs';
-import { Observable } from "rxjs";
-// import {userInfo} from "os";
-// const URL = 'https://ffi-backend.herokuapp.com/upload';
-// const URL = 'http://localhost:3000/upload';
 
 import { CriteriaObject} from "../../models";
 import { Response } from '@angular/http';
@@ -30,24 +25,8 @@ export class DashboardComponent implements OnInit{
   highlightTab;
   criteriaObj:CriteriaObject =this.global.getCriteriaObject();
   constructor (private helper: Helper, private sharedService: Shared,private http:Http, private el: ElementRef,private global:Global){
-      // this.getUsersImage();
   }
 
-
-  // public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
-
-
-  getImagesUploadedByUser(){
-
-    this.helper.getAllLikedImagesByUser(this.user_id).subscribe( (value) => {
-
-      this.imageContainers = value.imageContainers;
-      console.log(this.imageContainers);
-    })
-  }
-  // getUsersImage(){
-  //   this.helper.triggerIconGridComponentGetImages('users/uploaded','POST');
-  // }
   getUsersBlogs(){
 
     this.criteriaObj.url= 'users/writtenBlogs';
@@ -56,12 +35,6 @@ export class DashboardComponent implements OnInit{
     this.highlightTab = 'My Blogs';
   }
 
-  //get all liked images by user
-  // getAllLikedImages(){
-  //   this.helper.triggerIconGridComponentGetImages('users/liked_images','POST','from dashboard');
-  //
-  // }
-  //get all liked images by user
   getAllLikedBlogs(){
     this.criteriaObj.url= 'users/likedBlogs';
     this.helper.triggergetResultEvent(this.criteriaObj);
@@ -122,9 +95,6 @@ export class DashboardComponent implements OnInit{
     let currentURL= window.location.pathname;
     debugger;
     if(currentURL===this.global.dashboardURL){
-      // setTimeout(()=>{//may not be needed
-      //   this.helper.triggerIconGridComponentGetImages('AllIcons','POST',  this.global.getSearchQuery());
-      // },0);
       this.highlightTab = 'dashboard';
       alert();
     }
@@ -138,18 +108,5 @@ export class DashboardComponent implements OnInit{
       this.highlightTab = 'drafts';
     }
 
-  //   this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
-  //     form.append('imageAuthor_id', this.user_id);
-  //     form.append('imageAuthor', "sandeep ggguu");
-  //   };
-  //
-  //   //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
-  //   this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
-  //
-  //   //overide the onCompleteItem property of the uploader so we are
-  //   //able to deal with the server response.
-  //   this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-  //     console.log("ImageUpload:uploaded:", item, status, response);
-  //   };
   }
 }

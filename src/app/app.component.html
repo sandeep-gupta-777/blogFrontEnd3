@@ -1,6 +1,10 @@
+<div *ngIf="showProgressBar" style="position: fixed;top: 0; z-index: 2;width: 100%">
+  <app-progress-bar></app-progress-bar>
+</div>
 
 <div class="container-fluid ">
   <div class="row"  [ngClass]="{'blackBackground':showMenu && isSmallSizeDevice}">
+
 
     <div class="col-xs-12 col-md-2 nopadding" >
       <!--<div style="position: fixed; z-index: 1" *ngIf="showMenu">-->

@@ -13,24 +13,28 @@ import set = Reflect.set;
 })
 export class HeaderComponentComponent implements OnInit {
 
-  debounce(searchQuery,interval=0) {//TODO: shift this to helper class, interval can be uptp 200
-
-    this.showMenuOnXS=false;//just for XS
-
-    //https://stackoverflow.com/questions/18177174/how-to-limit-handling-of-event-to-once-per-x-seconds-with-jquery-javascript
-    this.helper.notifyKeywordChangeEvent.emit(searchQuery);
-    this.searchQuery = searchQuery;
-    this.global.setSearchQuery(searchQuery);
-
-    clearTimeout(this.lastCallRef);
-    this.lastCallRef = setTimeout(() => {
-      this.triggerAllResultsObservable(searchQuery);
-    }, interval);
-}
+//   debounce(searchQuery,interval=0) {
+//
+//     this.showMenuOnXS=false;//just for XS
+//
+//     //https://stackoverflow.com/questions/18177174/how-to-limit-handling-of-event-to-once-per-x-seconds-with-jquery-javascript
+//     this.helper.notifyKeywordChangeEvent.emit(searchQuery);
+//     this.searchQuery = searchQuery;
+//     this.global.setSearchQuery(searchQuery);
+//
+//     clearTimeout(this.lastCallRef);
+//     this.lastCallRef = setTimeout(() => {
+//       this.triggerAllResultsObservable(searchQuery);
+//     }, interval);
+// }
 
   triggerAllResultsObservable(searchQuery?:string){
     this.criteriaObj.url = this.global._backendRoute_AllResults;
-    this.criteriaObj.searchQuery=this.searchQuery;
+    this.criteriaObj.searchQuery=searchQuery;
+
+    this.global.setSearchQuery(searchQuery);
+    this.helper.notifyKeywordChangeEvent.emit(searchQuery);
+    this.searchQuery = searchQuery;
 
     //navigate to http://localhost:4200/icons page is not already navigated
     if(this.router.url !== "/"+this.global._backendRoute_AllResults)//these are frontend routes but with same value
@@ -41,6 +45,7 @@ export class HeaderComponentComponent implements OnInit {
         .subscribe((routeData: any) => {
 
           setTimeout(()=>{
+            // console.log(t);
             this.helper.getResultEvent.emit(this.criteriaObj );
             this.changeRouterSubscription.unsubscribe();
           },0);
@@ -67,6 +72,8 @@ export class HeaderComponentComponent implements OnInit {
      this.helper.setKeywordIntoSearchBarEvent.subscribe(
        (keyword)=> {this.searchQuery=keyword}
      );
+
+
 
 
     //Load appropriate results from server when page is loaded
@@ -110,6 +117,9 @@ export class HeaderComponentComponent implements OnInit {
 
           }, 0);
         }
+         else if(currentURL.indexOf('/other/new/blog')>-1 || currentURL.indexOf('/other/blogEdit')>-1 ) {
+          this.helper.showProgressBarEvent.emit(true);
+         }
       });
   }
 //=====================LIT====================================================
@@ -117,25 +127,30 @@ export class HeaderComponentComponent implements OnInit {
     return localStorage.getItem('token')!== null;
   }
 
-  goToBlogEditPage(){
+
+    goToBlogEditPage(){
+    if(!(window.location.href.indexOf('/other/new/blog')>-1 || window.location.href.indexOf('/other/blogEdit')>-1))
+    {
+      this.helper.showProgressBarEvent.emit(true);
+    }
     if(!this.isLoggedIn()){
       this.helper.showNotificationBarEvent.emit({message:'Please log in to create blog'});
     }
-    this.global.previousURL = 'new/blog';
+    this.global.previousSRPURL = 'new/blog';
     this.global.previousSRPQueryParams = {query:''};
       this.router.navigate(['other/new/blog']);
   }
 
   goToLoginPage(){
 
-    this.global.previousURL = window.location.pathname;
+    this.global.previousSRPURL = window.location.pathname;
     this.global.previousSRPQueryParams = this.activatedRoute.snapshot.queryParams;
     this.router.navigate(['other/login']);
 
   }
   logout(){
     localStorage.clear();
-    this.global.previousURL = window.location.pathname;
+    this.global.previousSRPURL = window.location.pathname;
     this.global.previousSRPQueryParams = this.activatedRoute.snapshot.queryParams;
     this.router.navigate(['other/login']);
     this.helper.showNotificationBarEvent.emit({message:'You are logged out!'});

@@ -20,6 +20,7 @@ import {BlogGridComponent} from "../blog-grid/blog-grid.component";
 import {AuthService} from "../auth.service";
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../sharedModule";
+import {SafePipe} from "../safe.pipe";
 
 const appRoutes: Routes = [
   {component: LoginComponent, path: 'login'},

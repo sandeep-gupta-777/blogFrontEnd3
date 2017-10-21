@@ -1,23 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 /*Following will go to: C:\Users\sandgup3\Desktop\NodeBook\FreeFlatIcon\public\stylesheets\style.css*/
 body{
-  /*background-image: url('https://static.pexels.com/photos/355465/pexels-photo-355465.jpeg');*/
-  /*background-image: url('https://scotch.io/img/icon-background.png');*/
-  /*background-image: url('http://gdj.graphicdesignjunction.com/wp-content/uploads/2011/02/background-pattern-design-79.jpg');*/
-  /*background-image: url('http://www.designbolts.com/wp-content/uploads/2012/11/Dark-textured-pattern-for-backgrounds.jpg');*/
-  /*background-image: url('http://www.designbolts.com/wp-content/uploads/2012/11/Free-Simple-Black-Seamless-Pattern-for-Website-Background.jpg');*/
-  /*background-image: url('http://www.designbolts.com/wp-content/uploads/2012/11/BO-Play-Free-Black-Dotted-Seamless-Pattern.jpg');*/
-  /*background-image: url('https://media.giphy.com/media/aqkJ9q160Zmta/giphy.gif');*/
 
-  /*background-image: url('https://stkateriparish.files.wordpress.com/2014/12/stars-in-black-sky.jpg');*/
-  /*background-image: url('http://www.nhm.ac.uk/content/dam/nhmwww/discover/space-pictures/night-sky-full-width.jpg');*/
-  /*background-image: url('http://www.designbolts.com/wp-content/uploads/2012/11/Black-wood-photoshop-pattern-for-website-background.jpg');*/
-  /*background-image: url('http://www.designbolts.com/wp-content/uploads/2012/11/Free-black-leather-seamless-photoshop-pattern-free-download.jpg');*/
   /*background-color: rgba(0, 0, 0, 0.92);*/
-  background-size: contain;
-  background-color: rgba(52, 52, 54, 0.89);
+    background-color: rgba(52, 52, 54, 0.89);
   /*this is to keep footer at at bottom*/
   height: 100%;
+  margin: 0;
 }
 html{
   /*this is to keep footer at at bottom*/

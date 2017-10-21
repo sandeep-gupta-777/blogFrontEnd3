@@ -12,7 +12,7 @@ export class AuthService implements CanActivate{
        return true;
      }
      else {
-       this.global.previousURL = window.location.pathname;
+       this.global.previousSRPURL = window.location.pathname;
        setTimeout(()=>{this.router.navigate(['login'])},0);
        return false;
      }

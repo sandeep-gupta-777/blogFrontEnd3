@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token',data.token);
           localStorage.setItem('userID',data.user._id);
           // this.router.navigateByUrl(this.global.previousSRPURL);
-          this.router.navigate([this.global.previousURL],{queryParams:this.global.previousSRPQueryParams});
+          this.router.navigate([this.global.previousSRPURL],{queryParams:this.global.previousSRPQueryParams});
           this.global.setLoggedInUserDetails(data.user);
           this.helper.showNotificationBarEvent.emit({message:'You are logged in!'});
 
@@ -55,8 +55,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if( localStorage.getItem('token')!== null){
-      setTimeout(()=>{
-        this.router.navigate([this.global.previousURL],{queryParams:this.global.previousSRPQueryParams});
+      setTimeout(()=>{` `
+        this.router.navigate([this.global.previousSRPURL],{queryParams:this.global.previousSRPQueryParams});
 
       },500);
 

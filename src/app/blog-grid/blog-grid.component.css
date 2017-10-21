@@ -84,3 +84,18 @@
   }
 }
 
+/*============animating placeholder starts=================*/
+.animateMe{
+  animation: blink 1.5s 0s infinite alternate;
+}
+
+@keyframes blink {
+  0%{
+    background-color: #eef3f6;
+  }
+  100%{
+    background-color: #ced3d6;
+  }
+
+}
+/*============animating placeholder ends=================*/
