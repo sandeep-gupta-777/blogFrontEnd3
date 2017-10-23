@@ -1,9 +1,12 @@
+
+
 import   "../../../../node_modules/tinymce/tinymce.js";
 import "../../../../node_modules/tinymce/themes/modern/theme.js";
 import "../../../../node_modules/tinymce/plugins/codesample/plugin.js";
 import "../../../../node_modules/tinymce/plugins/autoresize/plugin.js";
 import "../../../../node_modules/tinymce/plugins/code/plugin.js";
 import "../../../../node_modules/tinymce/plugins/advlist/plugin.js";
+import "../../../../node_modules/tinymce/plugins/lists/plugin.js";
 
 import {
   Component, OnDestroy, AfterViewInit, EventEmitter, Input, Output, OnInit, OnChanges,
@@ -155,7 +158,7 @@ export class BlogPageComponent implements OnInit, AfterViewInit, OnDestroy, OnCh
     tinymce.init({
       selector: '#' + elementId,
       plugins: [
-        'codesample autoresize',
+        'codesample autoresize advlist lists',
       ],
       // external_plugins: {
       //   'testing': 'http://www.testing.com/plugin.min.js',
@@ -164,7 +167,7 @@ export class BlogPageComponent implements OnInit, AfterViewInit, OnDestroy, OnCh
 
       autoresize_bottom_margin: 100,
       // toolbar: "codesample",
-      toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link advlist image | codesample | code ',
+      toolbar1: 'undo redo | insert | styleselect | bold italic | advlist lists alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link  image | codesample | code ',
       image_advtab: true,
       advlist_bullet_styles: "square",  // only include square bullets in list
       skin_url: this.baseURL + 'assets/skins/lightgray',
