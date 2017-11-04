@@ -13,27 +13,13 @@ import set = Reflect.set;
 })
 export class HeaderComponentComponent implements OnInit {
 
-//   debounce(searchQuery,interval=0) {
-//
-//     this.showMenuOnXS=false;//just for XS
-//
-//     //https://stackoverflow.com/questions/18177174/how-to-limit-handling-of-event-to-once-per-x-seconds-with-jquery-javascript
-//     this.helper.notifyKeywordChangeEvent.emit(searchQuery);
-//     this.searchQuery = searchQuery;
-//     this.global.setSearchQuery(searchQuery);
-//
-//     clearTimeout(this.lastCallRef);
-//     this.lastCallRef = setTimeout(() => {
-//       this.triggerAllResultsObservable(searchQuery);
-//     }, interval);
-// }
-
   triggerAllResultsObservable(searchQuery?:string){
     this.criteriaObj.url = this.global._backendRoute_AllResults;
     this.criteriaObj.searchQuery=searchQuery;
 
     this.global.setSearchQuery(searchQuery);
-    this.helper.notifyKeywordChangeEvent.emit(searchQuery);
+    // this.helper.notifyKeywordChangeEvent.emit(searchQuery);
+    this.helper.notifyKeywordChangeEvent.emit({searchQuery:this.searchQuery, source:"fromHeader"});
     this.searchQuery = searchQuery;
 
     //navigate to http://localhost:4200/icons page is not already navigated
@@ -62,7 +48,7 @@ export class HeaderComponentComponent implements OnInit {
 
     this.criteriaObj.source = 'from header';
 
-    this.helper.notifyKeywordChangeEvent.subscribe((searchQuery)=>{
+    this.helper.notifyKeywordChangeEvent.subscribe(({searchQuery})=>{
       this.searchQuery = searchQuery;
     });
     this.eventService.setLoggedInUserDetailsEvent.subscribe(
@@ -108,10 +94,9 @@ export class HeaderComponentComponent implements OnInit {
 
           setTimeout(() => {//may not be needed
             this.criteriaObj.url =  'allresults';
-            // this.helper.notifyKeywordChangeEvent.emit(this.searchQuery);
             this.criteriaObj.searchQuery = this.searchQuery;
             this.criteriaObj.shouldNavigateToSRP = false;
-            this.helper.notifyKeywordChangeEvent.emit(this.searchQuery);
+            this.helper.notifyKeywordChangeEvent.emit({searchQuery:this.searchQuery, source:"fromHeader"});
             this.helper.triggergetResultEvent(this.criteriaObj);
             this.changeRouterSubscription.unsubscribe();
 

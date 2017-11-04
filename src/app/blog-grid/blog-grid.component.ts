@@ -21,7 +21,7 @@ export class BlogGridComponent implements OnInit {
   lastCall;
 
   triggerAllResultsObservable(searchQuery?:string){
-    this.helper.notifyKeywordChangeEvent.emit(searchQuery);
+    this.helper.notifyKeywordChangeEvent.emit({searchQuery:searchQuery,source:"fromBlogGrid"});
 
     //navigate to http://localhost:4200/icons page is not already navigated
     if(this.router.url !== "/"+this.global._backendRoute_AllResults)//these are frontend routes but with same value
@@ -180,8 +180,12 @@ export class BlogGridComponent implements OnInit {
     });
 
     this.notifyKeywordChangeEventSubscription = this.helper.notifyKeywordChangeEvent.subscribe(value=>{
-      this.searchQuery = value;
-      this.global.setSearchQuery(value);
+      console.log( "inside notifyKeywordChangeEvent");
+      this.global.setSearchQuery(value.searchQuery);
+      if(value.source==="fromBlogGrid")
+        return;
+      this.searchQuery = value.searchQuery;
+
     })
 
   }
