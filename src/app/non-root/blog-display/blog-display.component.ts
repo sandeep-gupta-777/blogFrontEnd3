@@ -22,6 +22,21 @@ export class BlogDisplayComponent implements OnInit {
   }
 
   editMode = false;
+  privateMode= 0;
+  privateModeButtonText= "Make Public";
+  togglePrivateMode(){
+    ++this.privateMode;
+    if(this.privateMode%2==0)
+    {
+      this.privateModeButtonText="Make Public";
+    }
+    else {
+      this.privateModeButtonText="Make Private";
+    }
+    this.helper.makePostRequest('users/togglePrivateMode',{_id:this.blogPost._id}).subscribe((value:any)=>{
+
+    });
+  }
 
   // private getImageContainersSubscription;
   getClickedBlogPostSubscription;
@@ -47,7 +62,8 @@ export class BlogDisplayComponent implements OnInit {
     blogComments:["loading..."],
     blogTags:["loading..."],
     blogRelevency:-1,
-    blogImageURL: "loading..."
+    blogImageURL: "loading...",
+    blogPrivateMode:0
   };
   blogTitle = "not set";
   _id;
@@ -147,6 +163,14 @@ export class BlogDisplayComponent implements OnInit {
       this.blogPost = value[0];
       // alert(this.blogPost.blogTitle);
       this.blogTitle = this.blogPost.blogTitle;
+      this.privateMode = this.blogPost.blogPrivateMode;
+      if(this.privateMode%2==0)
+      {
+        this.privateModeButtonText="Make Public";
+      }
+      else {
+        this.privateModeButtonText="Make Private";
+      }
       console.log(value[0]);
       this.ref.detectChanges();
 

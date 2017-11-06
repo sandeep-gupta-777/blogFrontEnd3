@@ -50,7 +50,8 @@ export interface BlogPost{
   blogCommentsCount?:number,
   blogTags?:[String],
   blogRelevency?:number,
-  blogImageURL?: String
+  blogImageURL?: String,
+  blogPrivateMode?:number
 
 
 }

@@ -6,6 +6,9 @@
     <button *ngIf="isUserAlsoOwnerOfThisBlogPost()" class="btn btn-danger"
             (click)="openBlogEditorPage()"><a routerLink="/blogEdit"></a>{{editMode?"Save":"Edit"}}
     </button>
+    <button *ngIf="isUserAlsoOwnerOfThisBlogPost()" class="btn btn-danger"
+            (click)="togglePrivateMode()">{{privateModeButtonText}}
+    </button>
 
     <!--<div class="col-xs-12">-->
     <!--&lt;!&ndash;<button *ngIf="isUserAlsoOwnerOfThisBlogPost(blogPost.blogAuthor_id)" class="btn btn-danger"&ndash;&gt;-->
