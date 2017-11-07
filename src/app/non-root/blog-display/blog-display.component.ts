@@ -26,12 +26,12 @@ export class BlogDisplayComponent implements OnInit {
   privateModeButtonText= "Make Public";
   togglePrivateMode(){
     ++this.privateMode;
-    if(this.privateMode%2==0)
+    if(this.privateMode%2===0)
     {
-      this.privateModeButtonText="Make Public";
+      this.privateModeButtonText="Make Private";
     }
     else {
-      this.privateModeButtonText="Make Private";
+      this.privateModeButtonText="Make Public";
     }
     this.helper.makePostRequest('users/togglePrivateMode',{_id:this.blogPost._id}).subscribe((value:any)=>{
 
@@ -41,13 +41,7 @@ export class BlogDisplayComponent implements OnInit {
   // private getImageContainersSubscription;
   getClickedBlogPostSubscription;
   makePostRequestSubscription;
-  imageContainer: ImageContainer = {//TODO: try using async pipe, instead of initializing like this
-    imageId: 'not set',
-    imageName: 'not set',
-    imagePublishDate: 'not set',
-    imageAuthor: 'not set',
-    imageAuthor_id: 'not set'
-  };
+
   blogPost: BlogPost = {
     blogTitle:"loading...",
     blogHTML:"loading...",
@@ -88,9 +82,9 @@ export class BlogDisplayComponent implements OnInit {
 
   //fine
   isUserAlsoOwnerOfThisBlogPost() {
-    console.log('isUserAlsoOwnerOfThisBlogPost');
     //TODO: this method is called by 4 time, debug it
     let temp = this.global.getLoggedInUserDetails();
+    console.log(temp);
     if (!(temp && this.blogPost)) return false;
     return this.blogPost.blogAuthor_id === this.global.getLoggedInUserDetails()._id;
   }
@@ -106,14 +100,6 @@ export class BlogDisplayComponent implements OnInit {
       this.criteriaObj.url = this.global._backendRoute_AllResults;
       this.helper.triggergetResultEvent(this.criteriaObj);
     }, 0);
-  }
-
-
-
-  makeTagsEditable() {
-    this.imageContainer.imageTags.forEach(function (value) {
-      (<any>$('#temp')).tagsinput('add', value);
-    });
   }
 
   toggleEditModeAndSave() {
@@ -158,18 +144,22 @@ export class BlogDisplayComponent implements OnInit {
         this.blogPost = value;
       }
     );
+
+    let user_id= this.global.getLoggedInUserDetails() && this.global.getLoggedInUserDetails()._id;
+
     //this code is to fetch the blog from server when page is reloaded
-    this.helper.makePostRequest('getBlogPost', {_id: this._id}).subscribe((value) => {
+    this.helper.makePostRequest('getBlogPost', {_id: this._id, user_id:user_id}).subscribe((value) => {
+      // debugger;
       this.blogPost = value[0];
       // alert(this.blogPost.blogTitle);
       this.blogTitle = this.blogPost.blogTitle;
       this.privateMode = this.blogPost.blogPrivateMode;
-      if(this.privateMode%2==0)
+      if(this.privateMode%2===0)
       {
-        this.privateModeButtonText="Make Public";
+        this.privateModeButtonText="Make Private";
       }
       else {
-        this.privateModeButtonText="Make Private";
+        this.privateModeButtonText="Make Public";
       }
       console.log(value[0]);
       this.ref.detectChanges();

@@ -36,6 +36,7 @@ export class AppComponent implements OnInit{
       this.helper.getUserBy_id(localStorage.getItem('userID')).subscribe(
        (value)=> {
          console.log(value);
+         console.log(value);
          this.global.setLoggedInUserDetails(value[0]);
          this.eventService.setLoggedInUserDetailsEvent.emit(value[0]);
 
