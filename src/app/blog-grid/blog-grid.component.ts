@@ -22,7 +22,7 @@ export class BlogGridComponent implements OnInit {
 
   triggerAllResultsObservable(searchQuery?:string){
     this.helper.notifyKeywordChangeEvent.emit({searchQuery:searchQuery,source:"fromBlogGrid"});
-
+console.log("hello");
     //navigate to http://localhost:4200/icons page is not already navigated
     if(this.router.url !== "/"+this.global._backendRoute_AllResults)//these are frontend routes but with same value
       this.router.navigate(["/"+ this.global._backendRoute_AllResults]);

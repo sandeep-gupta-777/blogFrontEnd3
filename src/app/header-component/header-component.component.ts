@@ -14,13 +14,13 @@ import set = Reflect.set;
 export class HeaderComponentComponent implements OnInit {
 
   triggerAllResultsObservable(searchQuery?:string){
+    console.log(searchQuery);
+    this.searchQuery = searchQuery;
     this.criteriaObj.url = this.global._backendRoute_AllResults;
     this.criteriaObj.searchQuery=searchQuery;
 
     this.global.setSearchQuery(searchQuery);
-    // this.helper.notifyKeywordChangeEvent.emit(searchQuery);
     this.helper.notifyKeywordChangeEvent.emit({searchQuery:this.searchQuery, source:"fromHeader"});
-    this.searchQuery = searchQuery;
 
     //navigate to http://localhost:4200/icons page is not already navigated
     if(this.router.url !== "/"+this.global._backendRoute_AllResults)//these are frontend routes but with same value
@@ -48,7 +48,7 @@ export class HeaderComponentComponent implements OnInit {
 
     this.criteriaObj.source = 'from header';
 
-    this.helper.notifyKeywordChangeEvent.subscribe(({searchQuery})=>{
+    this.helper.notifyKeywordChangeEvent.subscribe(({searchQuery,source})=>{
       this.searchQuery = searchQuery;
     });
     this.eventService.setLoggedInUserDetailsEvent.subscribe(
@@ -96,7 +96,7 @@ export class HeaderComponentComponent implements OnInit {
             this.criteriaObj.url =  'allresults';
             this.criteriaObj.searchQuery = this.searchQuery;
             this.criteriaObj.shouldNavigateToSRP = false;
-            this.helper.notifyKeywordChangeEvent.emit({searchQuery:this.searchQuery, source:"fromHeader"});
+            this.helper.notifyKeywordChangeEvent.emit({searchQuery:this.searchQuery, source:"fromHeader1"});
             this.helper.triggergetResultEvent(this.criteriaObj);
             this.changeRouterSubscription.unsubscribe();
 
@@ -105,6 +105,12 @@ export class HeaderComponentComponent implements OnInit {
          else if(currentURL.indexOf('/other/new/blog')>-1 || currentURL.indexOf('/other/blogEdit')>-1 ) {
           this.helper.showProgressBarEvent.emit(true);
          }
+        this.changeRouterSubscription.unsubscribe(); //TODO: removing this will result in two inputs getting unsync. find out why
+        /**Steps to reproduce above:
+         * 1. go to http://localhost:4200/other/new/blog
+         * 2. type something in header input
+         * 3. keep typing to obnserve weird behaviour
+         * */
       });
   }
 //=====================LIT====================================================
