@@ -55,7 +55,7 @@
       <div class="form-group">
         <div class="input-group">
           <input type="text"
-                 [(ngModel)]="searchQuery" (ngModelChange)="triggerAllResultsObservable(searchQuery)"
+                 [(ngModel)]="searchQuery" (keypress)= "triggerAllResultsObservable(searchQuery)"
                  class="form-control" placeholder="Search..." aria-describedby="basic-addon2"
                 style="background: transparent; color: white"
           >

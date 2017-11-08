@@ -25,14 +25,16 @@ export class BlogDisplayComponent implements OnInit {
   privateMode= 0;
   privateModeButtonText= "Make Public";
   togglePrivateMode(){
+    console.log(this.privateMode);
     ++this.privateMode;
     if(this.privateMode%2===0)
     {
-      this.privateModeButtonText="Make Private";
+      this.privateModeButtonText="Public";
     }
     else {
-      this.privateModeButtonText="Make Public";
+      this.privateModeButtonText="Private";
     }
+
     this.helper.makePostRequest('users/togglePrivateMode',{_id:this.blogPost._id}).subscribe((value:any)=>{
 
     });
@@ -156,10 +158,10 @@ export class BlogDisplayComponent implements OnInit {
       this.privateMode = this.blogPost.blogPrivateMode;
       if(this.privateMode%2===0)
       {
-        this.privateModeButtonText="Make Private";
+        this.privateModeButtonText="Public";
       }
       else {
-        this.privateModeButtonText="Make Public";
+        this.privateModeButtonText="Private";
       }
       console.log(value[0]);
       this.ref.detectChanges();
