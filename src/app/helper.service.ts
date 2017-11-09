@@ -79,8 +79,11 @@ makePostRequest(url, body){
   }
   loadMoreResults(searchQuery,previouslyLoadedResultsCount,newResultsToBeLoadedCount){
     return this.http.post(`${this.backendURL_heroku}/loadMoreResults`,{searchQuery, previouslyLoadedResultsCount,newResultsToBeLoadedCount})
-      .map((response:Response)=>response.json())
-      .catch((err:Response)=> Observable.throw(err.json()));
+      .map((response:Response)=>{
+        return response.json();//if return is not there, rubscribe will get undefind
+        //TODO: learn why do we require return in above line: https://stackoverflow.com/questions/44750337/angular-2-subscribe-returning-undefined
+      })
+      // .catch((err:Response)=> Observable.throw(err.json()));
   }
 
   getSiblingBlogCommentsCount(level){

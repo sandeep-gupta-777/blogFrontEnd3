@@ -65,15 +65,16 @@ console.log("hello");
     console.log('load more clicked');
     this.showLoadingIcon = true;
     this.showTimeOutErrorIfNeeded();
-    this.loadMoreResultsSubscription =  this.helper.loadMoreResults(this.searchQuery,this.previouslyLoadedResultCount,this.newResultsToBeLoadedCount )
-      //will trigger /loadMoreResults in backend
+    // this.loadMoreResultsSubscription =
+      this.helper.loadMoreResults(this.searchQuery,this.previouslyLoadedResultCount,this.newResultsToBeLoadedCount )
       .subscribe(value=>{
+        console.log(value);
         clearInterval(this.timeOutRef);
         this.showLoadingIcon = false;
         value.length<newResultsToBeLoadedCount?this.showLoadMore=false:this.showLoadMore=true;//TODO: change 1 to  10
         this.resultsArray = this.resultsArray.concat(value);
         this.previouslyLoadedResultCount = this.resultsArray.length ;
-        // this.sortResultsArrayBy(this.sortbyPropery); we are not sorting....we should recieve sorted queries
+        ////this.sortResultsArrayBy(this.sortbyPropery); we are not sorting....we should recieve sorted queries
       });
 
   }
@@ -245,7 +246,7 @@ console.log("hello");
   private loadMoreResultsSubscription;
   private notifyKeywordChangeEventSubscription;
   previouslyLoadedResultCount = 0;
-  newResultsToBeLoadedCount = 1;//TODO: make it a global variable
+  newResultsToBeLoadedCount = 10;//TODO: make it a global variable
   private subscriptionPost;
   resultsArray: BlogPost[];
   loadingArray = [1, 2,3,4,5,6,7,8,9,0];
