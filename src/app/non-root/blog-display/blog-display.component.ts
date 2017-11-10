@@ -148,14 +148,20 @@ export class BlogDisplayComponent implements OnInit {
     );
 
     // let user_id= this.global.getLoggedInUserDetails() && this.global.getLoggedInUserDetails()._id;//bad idea
-    let user_id= localStorage.user_id;
-
     //this code is to fetch the blog from server when page is reloaded
-    this.helper.makePostRequest('getBlogPost', {_id: this._id, user_id:user_id}).subscribe((value) => {
-      debugger;
-      user_id= localStorage.user_id;
-      console.log(this._id,user_id);
+    this.helper.makePostRequest('getBlogPost', {_id: this._id}).subscribe((value) => {
       this.blogPost = value[0];
+
+      let tempTabObject={tabArray:[this.blogPost]};
+      if(!localStorage.getItem('tabs')){
+        localStorage.setItem('tabs',JSON.stringify(tempTabObject));
+      }
+      else {
+        let localStorageObject = JSON.parse(localStorage.getItem('tabs'));
+        localStorageObject.tabArray.push(this.blogPost);
+        localStorage.setItem('tabs',JSON.stringify(localStorageObject));
+      }
+
       // alert(this.blogPost.blogTitle);
       this.blogTitle = this.blogPost.blogTitle;
       this.privateMode = this.blogPost.blogPrivateMode;

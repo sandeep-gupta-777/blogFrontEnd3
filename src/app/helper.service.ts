@@ -44,7 +44,7 @@ export class Helper {
 
 makePostRequest(url, body){
     console.log('in header--> making post request');
-    body.user_id = this.global.getLoggedInUserDetails() && this.global.getLoggedInUserDetails()._id;
+    body.user_id = localStorage.userID;
    return this.http.post(`${this.backendURL_heroku}/${url}`, body)//header removed
       .map((response: Response) => response.json())
       .catch((err: Response) => Observable.throw(err.json()))

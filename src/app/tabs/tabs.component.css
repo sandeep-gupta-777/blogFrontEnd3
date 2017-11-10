@@ -1,0 +1,8 @@
+
+.red  {
+  background-color: white;
+}
+.red  a:hover {
+  background-color: #4a4a4c;
+  color: white;
+}
