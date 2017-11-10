@@ -16,6 +16,7 @@ import {AuthService} from "./auth.service";
 import {BlogGridComponent} from "./blog-grid/blog-grid.component";
 import {SharedModule} from "./sharedModule";
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 // routes
 const appRoutes: Routes = [
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
     // BlogGridComponent,
     NotFoundComponent,
     ProgressBarComponent,
+    TabsComponent,
 
     // LoginComponent,
     // SignupComponent,
