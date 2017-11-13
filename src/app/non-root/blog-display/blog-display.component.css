@@ -1,6 +1,4 @@
-.container{
-  width: 90%;
-}
+
 
 .title-strip{
   background-color: white;
@@ -30,7 +28,18 @@
 .bodyText{
   color: #000;
   font-size: 15px;
-  margin: 50px 50px ;
+  /*margin: 50px 50px ;*/
+}
+
+@media (max-width: 768px) {
+  .bodyText{
+    margin-top: 20px;
+  }
+}
+@media (min-width: 768px) {
+  .bodyText{
+    margin: 20px 50px 50px 50px;
+  }
 }
 
 .vertical-center{

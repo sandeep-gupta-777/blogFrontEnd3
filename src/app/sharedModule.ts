@@ -7,18 +7,21 @@ import {TrimStringPipe} from "./trim-string.pipe";
 import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {SafePipe} from "./safe.pipe";
+import {CamelcasePipe} from "./camelcase.pipe";
 
 @NgModule({
   declarations:[
     BlogGridComponent,
     SortArrayByPipe,
     TrimStringPipe,
-    SafePipe
+    SafePipe,
+    CamelcasePipe
   ],
   exports:[BlogGridComponent,
     SortArrayByPipe,
     TrimStringPipe,
-    SafePipe
+    SafePipe,
+    CamelcasePipe
 
   ],
   imports:[

@@ -1,14 +1,12 @@
 
-<br>
-
-<div *ngIf="parent!=='dashaboard'" class="container" style="border-bottom: solid 1px white;">
+<div *ngIf="parent!=='dashaboard'" class="container hidden-xs" style="border-bottom: solid 1px white;width: 98%">
   <!--<div style="color:white;font-size: 60px; "><i class="fa fa-search-plus" style="margin-right: 1%"></i>Search Results</div>-->
   <input id="searchT" [(ngModel)]="searchQuery" (ngModelChange)="triggerAllResultsObservable($event,200)"
          placeholder="Search..." autofocus type="search"
          style="width: 100%; background: transparent; border: hidden;color: white;">
 </div>
 
-<div class="container" style="min-height: 70vh; overflow: auto;">
+<div class="container" style="min-height: 70vh; overflow: hidden;width: 100%">
   <br>
   <div class="container" style="width: 95%">
 
@@ -70,7 +68,7 @@
           <!--result title here-->
           <div class="linkCursor result-title" style="margin-top: 0px;font-family: sans-serif;font-weight: bold"
                [innerHTML]="result.blogTitle" (click)="openBlogDisplayPage(result)"></div>
-          <div [innerHTML]="result.blogText">
+          <div [innerHTML]="result.blogText" style="font-family:sans-serif,fantasy" >
             <!--in grid we use text but in full text we use htnml-->
 
             <!--result snippet here-->
@@ -79,7 +77,7 @@
         <!--Metadata starts-->
         <div class="col-xs-12 " style="height: 20px; margin-bottom: 10px">
           <div class="pull-right">
-            <span><b>{{result.blogAuthor_fullName}}</b></span>
+            <span><b>{{result.blogAuthor_fullName|camelcase}}</b></span>
             <span>{{result.blogCreationDate|date:'mediumDate'}}</span>
             <a [routerLink]="'/'+global.blogEditURL + result._id" style="color:#000;"> <i
               *ngIf="isUserAlsoOwnerOfThisBlogPost(result.blogAuthor_id)" class="fa fa-edit">Edit</i></a>

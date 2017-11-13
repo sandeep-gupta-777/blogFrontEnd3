@@ -63,13 +63,22 @@ a{
 
 
 @media (max-width: 768px) {
-  .container-fluid{
+  .header-header{
     width: 100%;
+  }
+  .header-body{
+    width: 80%;
+    padding: 16px;
+    top:20%;
+    overflow-y: scroll;
   }
 }
 @media (min-width: 768px) {
-  .container-fluid{
-    /*width: 32vh;*/
+  .header-body{
+    width: 16%;
+    padding:10px;
+    top:0%;
+    overflow-y: hidden;
   }
 }
 

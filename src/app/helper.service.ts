@@ -27,6 +27,7 @@ export class Helper {
    private backendURL_heroku = this.global.getbackendURL_heroku();
   showNotificationBarEvent = new EventEmitter();
   showProgressBarEvent = new EventEmitter<boolean>();
+  localstorageTabsArrayUpdatedEvent = new EventEmitter();
   getResultEvent = new EventEmitter();
   constructor(private http: Http, private global:Global){}
 

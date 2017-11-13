@@ -6,10 +6,14 @@
   <div class="row"  [ngClass]="{'blackBackground':showMenu && isSmallSizeDevice}">
 
 
-    <div class="col-xs-12 col-md-2 nopadding" >
+    <!--<div class="col-xs-12 col-md-2 nopadding " >-->
+    <div class="col-xs-12 col-md-2 nopadding " >
       <!--<div style="position: fixed; z-index: 1" *ngIf="showMenu">-->
-      <div id="headerFixed"  style="position: fixed;top:0px;bottom:0px;left: 0px;overflow-y: auto; z-index: 1;" >
+      <!--<div id="headerFixed"  style="position: fixed;top:0px; bottom:0px;left: 0px;overflow-y: auto; z-index: 1;" >-->
+      <div id="headerFixed"  >
+
         <app-header-component></app-header-component>
+
       </div>
     </div>
 
@@ -17,8 +21,9 @@
       <router-outlet></router-outlet>
     </div>
 
-    <div class="col-md-2">
-      <app-tabs></app-tabs>
+    <div class="col-xs-12 col-md-2 nopadding hidden visible-lg" style="height: 100vh; border-left: #929392 solid 1px; position: fixed; right: 0 " >
+      <!--<div style="position: fixed; z-index: 1" *ngIf="showMenu">-->
+        <app-tabs ></app-tabs>
     </div>
 
     <div class="col-xs-12 ">
@@ -26,7 +31,6 @@
         <app-footer-component></app-footer-component>
       </div>
     </div>
-
   </div>
 
 </div>

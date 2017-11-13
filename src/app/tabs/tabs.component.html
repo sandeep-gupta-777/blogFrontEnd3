@@ -1,11 +1,13 @@
-<br><br><br><br>
 
-<!--https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_pills_vertical&stacked=h-->
-<div class="container" style="width: 100%">
-  <ul class="nav nav-pills nav-stacked red">
-    <li class="active"><a href="#">Home</a></li>
-    <li><a href="#">Menu 1</a></li>
-    <li><a href="#">Menu 2</a></li>
-    <li><a href="#">Menu 3</a></li>
-  </ul>
+
+<div class="container-fluid" style="margin-left: 3px">
+  <h3 style="width: 100%; color: white;" class="center-horizontal">Recently visited</h3>
+  <div class="row whiteText center-vertical"  [ngClass]="{active:addActiveClass(blogPost)}"  *ngFor="let blogPost of tabsArray"
+       style="display: flex; align-items: center ;justify-content: center; height: 40px;">
+    <div style="background-color: green; width: 7%;height: 100%;" ><i class="fa fa-times center-vertical center-horizontal"
+                                                                      (click)="removeBlogPostFromTabsArray(blogPost)"
+                                                                      style="height: 100%;"></i></div>
+    <div class="center-vertical" style="width: 93%;padding-left: 5%; height: 100%;  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; "  (click)="openBlogDisplayPage(blogPost)"><a>{{blogPost.blogTitle}}</a></div>
+  </div>
+
 </div>

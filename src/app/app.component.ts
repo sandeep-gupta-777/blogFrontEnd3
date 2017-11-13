@@ -15,10 +15,7 @@ export class AppComponent implements OnInit{
   html:string;
   showProgressBar:boolean=true;
 
-  constructor(private helper:Helper, private eventService:EventService,private global:Global,private ref : ChangeDetectorRef){
-
-   }
-
+  constructor(private helper:Helper, private eventService:EventService,private global:Global,private ref : ChangeDetectorRef){ }
 
   ngOnInit(){
   this.showProgressBar= false;

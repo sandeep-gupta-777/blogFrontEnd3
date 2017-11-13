@@ -93,7 +93,7 @@ export class DashboardComponent implements OnInit{
   ngOnInit(): void {
     this.criteriaObj.source = "from dashboard";
     let currentURL= window.location.pathname;
-    debugger;
+   
     if(currentURL===this.global.dashboardURL){
       this.highlightTab = 'dashboard';
       alert();

@@ -1,39 +1,57 @@
-
+<div class="hidden-lg" style="margin-top: 21vh"></div>
+<!--This will occupy space of below fixed component-->
 
 <!--top bar for xs starts-->
-<div class="container-fluid  hidden-lg " style="background-color: #1d1f20;height: 10%">
-  <div class="row center-vertical " style="height: 100%" >
+<div class=" container-fluid header-header  hidden-lg " style="background-color: #1f282d;height: 20%; position: fixed;top:0px;left: 0;overflow: hidden; z-index: 1;">
+  <div class="row center-vertical " style="height: 50%" >
     <div class="col-xs-2  "  (click)="showMenuOnXS = !showMenuOnXS">
-      <i class="glyphicon glyphicon-menu-hamburger" style="color: white; font-size: 25px; "></i>
+      <i *ngIf="!showMenuOnXS" class="glyphicon glyphicon-menu-hamburger" style="color: white; font-size: 25px; "></i>
+      <i *ngIf="showMenuOnXS" class="fa fa-times" style="color: white; font-size: 35px; "></i>
     </div>
     <div class="col-xs-10 ">
       <a (click)="triggerAllResultsObservable('')"  [routerLink]="['/allresults']" [queryParams]="{query:''}" >
         <img class="img-responsive"  style="height: 38px"  src="./assets/logo1.png ">
       </a>
+    </div>
 
+  </div>
+  <!--search starts-->
+  <div class="row center-vertical " style="height: 50%" >
+    <div class="col-xs-12">
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" [ngModel]="searchQuery"
+                 (input)="triggerAllResultsObservable($event.target.value, false)"
+                 class="form-control" placeholder="Search..." aria-describedby="basic-addon2"
+                 style="background: transparent; color: white"
+          >
+          <span (click)="triggerAllResultsObservable(searchQuery, false)" style="background: transparent;cursor: pointer"
+                class="input-group-addon"  id="basic-addon2"><i class="fa fa-search" style="color: white"> </i></span>
+        </div>
+      </div>
     </div>
   </div>
+  <!--search ends-->
 </div>
 <!--top bar for xs ends-->
 
-<div class="container-fluid " style="height: 100vh; background-color: #1d1f20" [ngClass]="{'hidden-xs':!showMenuOnXS}">
 
+<!--style="position: fixed;top:0px; bottom:0px;left: 0px;overflow-y: auto; z-index: 1;-->
+
+<div class=" header-body" style="background-color: #1f282d; position: fixed; bottom:0px;left: 0px;overflow-x: hidden; z-index: 1;" [ngClass]="{'hidden-xs':!showMenuOnXS}">
 
   <div  class="row hidden-xs center-vertical" style="height: 20%;">
-
-
-
     <!--logo starts here-->
       <div class="col-xs-12 ">
       <a (click)="triggerAllResultsObservable('')"  [routerLink]="['/allresults']" [queryParams]="{query:''}" >
         <img  class="img-responsive" src="./assets/logo1.png ">
       </a>
     </div>
-    <!--logo ends here-->
+    <!--logo ends heree-->
   </div>
 
   <div class="row whiteText"
-       style="display: flex; align-items: center ;justify-content: center">
+       style="display: flex; align-items: center ;justify-content: center;">
     <div
          style="background-color: #ff4f12; width: 15%;height: 40px; display: flex;align-items: center; justify-content: center;">
       <i class="fa fa-edit"></i></div>
@@ -50,7 +68,7 @@
 
   <br><br><br><br>
   <!--search starts-->
-  <div class="row">
+  <div class="row hidden-xs">
     <div class="col-xs-12">
       <div class="form-group">
         <div class="input-group">

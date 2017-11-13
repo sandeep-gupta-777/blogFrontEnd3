@@ -152,15 +152,7 @@ export class BlogDisplayComponent implements OnInit {
     this.helper.makePostRequest('getBlogPost', {_id: this._id}).subscribe((value) => {
       this.blogPost = value[0];
 
-      let tempTabObject={tabArray:[this.blogPost]};
-      if(!localStorage.getItem('tabs')){
-        localStorage.setItem('tabs',JSON.stringify(tempTabObject));
-      }
-      else {
-        let localStorageObject = JSON.parse(localStorage.getItem('tabs'));
-        localStorageObject.tabArray.push(this.blogPost);
-        localStorage.setItem('tabs',JSON.stringify(localStorageObject));
-      }
+      this.pushBlogInLocalStorageObj();
 
       // alert(this.blogPost.blogTitle);
       this.blogTitle = this.blogPost.blogTitle;
@@ -210,6 +202,29 @@ export class BlogDisplayComponent implements OnInit {
         err => console.log(err)
       );
 
+  }
+  pushBlogInLocalStorageObj(){
+    debugger;
+    let tempTabObject={tabArray:[this.blogPost]};
+    if(!localStorage.getItem('tabs')){
+      localStorage.setItem('tabs',JSON.stringify(tempTabObject));
+    }
+    else {
+
+      let localStorageObject = JSON.parse(localStorage.getItem('tabs'));
+      let duplicate:boolean=false;
+      localStorageObject.tabArray.forEach((value)=>{
+        if(value._id===this.blogPost._id){
+          duplicate=true;
+        }
+      });
+      if(!duplicate && this.blogPost._id){
+        localStorageObject.tabArray.unshift(this.blogPost);
+        localStorage.setItem('tabs',JSON.stringify(localStorageObject));
+        this.helper.localstorageTabsArrayUpdatedEvent.emit();
+      }
+
+    }
   }
 
 }

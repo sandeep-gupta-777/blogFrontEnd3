@@ -3,7 +3,8 @@
 }
 
 :host /deep/ .searchQuery{
-  color: blue;
+  color: yellow;
+  background-color: rgba(74, 74, 76, 0.62);
 }
 
 .horizontal-center{

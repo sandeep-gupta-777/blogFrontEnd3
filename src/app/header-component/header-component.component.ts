@@ -13,7 +13,8 @@ import set = Reflect.set;
 })
 export class HeaderComponentComponent implements OnInit {
 
-  triggerAllResultsObservable(searchQuery?:string){
+  triggerAllResultsObservable(searchQuery?:string,togggleMenu:boolean=true){
+    if(togggleMenu)this.showMenuOnXS = !this.showMenuOnXS;
     console.log(searchQuery);
     this.searchQuery = searchQuery;
     this.criteriaObj.url = this.global._backendRoute_AllResults;
