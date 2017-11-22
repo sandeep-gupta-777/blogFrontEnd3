@@ -24,8 +24,8 @@ export class BlogGridComponent implements OnInit {
     this.helper.notifyKeywordChangeEvent.emit({searchQuery:searchQuery,source:"fromBlogGrid"});
 console.log("hello");
     //navigate to http://localhost:4200/icons page is not already navigated
-    if(this.router.url !== "/"+this.global._backendRoute_AllResults)//these are frontend routes but with same value
-      this.router.navigate(["/"+ this.global._backendRoute_AllResults]);
+    if(this.router.url !== "/"+this.global.blogGridUrl)//these are frontend routes but with same value
+      this.router.navigate(["/"+ this.global.blogGridUrl]);
     // if (!isUndefined(searchQuery)) {
       this.searchQuery = searchQuery;
       this.global.setSearchQuery(searchQuery);
@@ -33,7 +33,7 @@ console.log("hello");
 
     setTimeout(()=>{
       this.criteriaObj.searchQuery = searchQuery;
-      this.criteriaObj.url = this.global._backendRoute_AllResults;
+      this.criteriaObj.url = this.global.blogGridUrl;
       this.helper.triggergetResultEvent(this.criteriaObj);
     }, 0);
     // this.helper.triggerIconGridComponentGetImages('AllIcons','POST',  newValue);
@@ -132,9 +132,9 @@ console.log("hello");
         //   this.parent='';
         //   this.router.navigate(['allresults'],{queryParams:{query:criteriaObj.searchQuery}});
         // }
-        else if(tempUrl.indexOf('/allresults?query')) {
+        else if(tempUrl.indexOf('/app/allresults?query')) {
           this.parent='';
-          this.router.navigate(['allresults'],{queryParams:{query:criteriaObj.searchQuery}});//TODO: change this
+          this.router.navigate(['app','allresults'],{queryParams:{query:criteriaObj.searchQuery}});//TODO: change this
         }
       // }
 

@@ -28,7 +28,7 @@ declare let tinymce: any;
 export class BlogPageComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
 
   ngOnInit() {
-
+    this.global.showSearchBarBoolean=false;
     setTimeout(()=>{this.helper.showProgressBarEvent.emit(false)},1000);
 
     //initialte blogContent here

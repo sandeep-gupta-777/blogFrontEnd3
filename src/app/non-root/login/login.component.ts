@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.global.showSearchBarBoolean = false;
     if( localStorage.getItem('token')!== null){
       setTimeout(()=>{` `
         this.router.navigate([this.global.previousSRPURL],{queryParams:this.global.previousSRPQueryParams});

@@ -2,8 +2,11 @@
 /*Following will go to: C:\Users\sandgup3\Desktop\NodeBook\FreeFlatIcon\public\stylesheets\style.css*/
 body{
 
-  /*background-color: rgba(0, 0, 0, 0.92);*/
-    background-color: rgba(52, 52, 54, 0.89);
+
+  background-color: black;
+  /*background-color: white;*/
+  background: url('https://static.pexels.com/photos/159368/laptop-iphone-coffee-notebook-159368.jpeg') no-repeat;background-size: cover;
+  background-attachment: fixed;
   /*this is to keep footer at at bottom*/
   height: 100%;
   margin: 0;
@@ -20,8 +23,17 @@ html{
   border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
+.border1{
+  border: 2px solid red;
+}
 
 
 a{
   cursor: pointer;
+}
+
+pre{
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.65);
+  color:white;
 }

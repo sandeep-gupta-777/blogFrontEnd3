@@ -1,0 +1,30 @@
+<div *ngIf="showProgressBar" style="position: fixed;top: 0; z-index: 2000;width: 100%">
+  <app-progress-bar></app-progress-bar>
+</div>
+
+
+
+
+<div  style="background-color: rgba(0,0,0,0.58);">
+  <app-header-component></app-header-component>
+</div>
+
+<div class="container-fluid " style="background-color: rgba(0,0,0,0.58);min-height: 800px">
+  <div class="row"  [ngClass]="{'blackBackground':showMenu && isSmallSizeDevice}">
+
+    <div class="col-12 p-0" >
+      <router-outlet></router-outlet>
+<!--  This place is for AppComponent or FrontPageComponent-->
+    </div>
+    <div class="col-12 p-0">
+      <app-footer2></app-footer2>
+    </div>
+    <div class="col-12 ">
+      <div id="footerFixed"   style="position: fixed;bottom:40px;right: 0px;overflow-y: auto; z-index: 1;" >
+        <app-footer-component></app-footer-component>
+      </div>
+    </div>
+  </div>
+
+</div>
+

@@ -1,42 +1,36 @@
 
 <div class="container" style="width: 95%">
-  <div class="row">
-    <a role="button" *ngIf="global.resultsArray" class="btn btn-default" (click)="goToPreviousSRP()"><i
-      class="fa fa-arrow-left"></i> Back to Results</a>
-    <button *ngIf="isUserAlsoOwnerOfThisBlogPost()" class="btn btn-danger"
-            (click)="openBlogEditorPage()"><a routerLink="/blogEdit"></a>{{editMode?"Save":"Edit"}}
-    </button>
-    <button *ngIf="isUserAlsoOwnerOfThisBlogPost()" class="btn btn-danger"
-            (click)="togglePrivateMode()">{{privateModeButtonText}}
-    </button>
-
-    <!--<div class="col-xs-12">-->
-    <!--&lt;!&ndash;<button *ngIf="isUserAlsoOwnerOfThisBlogPost(blogPost.blogAuthor_id)" class="btn btn-danger"&ndash;&gt;-->
-    <!--&lt;!&ndash;(click)="toggleEditModeAndSave()">{{editMode?"Save":"Your Content"}}&ndash;&gt;-->
-    <!--&lt;!&ndash;</button>&ndash;&gt;-->
-    <!--<a role="button" class="btn btn-default" [routerLink]="'/allresults'">back to SRP</a>-->
-
+  <div class="row ">
+    <!--<div class="col-12 border">-->
+      <a role="button" *ngIf="global.resultsArray" class="btn btn-outline-light text-white" (click)="goToPreviousSRP()"><i
+        class="fa fa-arrow-left"></i> Back to Results</a>
+      <button *ngIf="isUserAlsoOwnerOfThisBlogPost()" class="btn btn-outline-light"
+              (click)="openBlogEditorPage()"><a routerLink="/blogEdit"></a>{{editMode?"Save":"Edit"}}
+      </button>
+      <button *ngIf="isUserAlsoOwnerOfThisBlogPost()" class="btn btn-outline-light"
+              (click)="togglePrivateMode()"> <i class="fa" [ngClass]="{'fa-globe':privateMode%2===0, 'fa-user-secret': privateMode%2!==0}"></i> {{privateModeButtonText}}
+      </button>
     <!--</div>-->
-    <br>
-    <div class="title-strip col-xs-12 ">
-      <h1 class="blogTitle" style="font-family: sans-serif" *ngIf="blogPost"
+
+    <div class="bg-light col-12">
+      <h1 class="blogTitle display-4" *ngIf="blogPost"
           [innerHTML]="blogPost.blogTitle?blogPost.blogTitle:''">
         <!--title here-->
       </h1>
 
     </div>
-    <div class="col-xs-12" style="background-color: #212122;color: white">
-      <span class="blogMetaData"><i class="fa fa-pencil"> {{blogPost.blogAuthor_fullName|camelcase}}</i></span>
-      <span class="blogMetaData">   <i class="fa fa-clock-o"> {{blogPost.blogCreationDate|date:'fullDate'}}</i></span>
+
+    <div class="col-12 text-white" style="background-color: black;color: white">
+      <span class="px-4"><i class="fa fa-pencil"> {{blogPost.blogAuthor_fullName|camelcase}}</i></span>
+      <span>   <i class="fa fa-clock-o"> {{blogPost.blogCreationDate|date:'fullDate'}}</i></span>
     </div>
 
     <!--blog Image starts-->
-    <div *ngIf="blogPost.blogImageURL" class="col-xs-12" style="background-color: black;margin: 0;padding: 0">
+    <div *ngIf="blogPost.blogImageURL" class="col-12" style="background-color: black;margin: 0;padding: 0">
       <!--why margin and padding 0? https://stackoverflow.com/questions/31234817/div-does-not-fill-parent-with-width100-->
       <!--<img style="width: 100%" src="https://ciphertrick.com/wp-content/uploads/2017/03/featured-1-900x420.jpg">-->
       <!--<img class="img-responsive" src="https://image.ibb.co/m4HXEQ/questiio.png">-->
       <img class="img-responsive center-block" [src]="blogPost.blogImageURL">
-
     </div>
 
     <div>
@@ -45,8 +39,8 @@
     <!--blog Image ends-->
 
     <!--blog body starts here-->
-    <div class="col-xs-12" style="background-color: white; overflow-x: hidden">
-      <div class="bodyText" style="font-family: sans-serif;" [innerHTML] = " blogPost.blogHTML | safeHTML">
+    <div class="col-12" style="background-color: white; overflow-x: hidden">
+      <div class="bodyText" style="font-family: sans-serif; font-size: 17px" [innerHTML] = " blogPost.blogHTML | safeHTML">
         <!--body here-->
       </div>
     </div>
@@ -54,18 +48,18 @@
     <!--blog body ends here-->
 
 
-    <div class="col-md-11 col-xs-12 vertical-center" style="background-color: black; height: 30px">
+    <div class="col-md-11 col-12 vertical-center" style="background-color: black; height: 30px">
       <div>
         <a style="cursor: pointer;" *ngFor="let tag of blogPost.blogTags" (click)="triggerGetResultEvent(tag)"> <span
-          class="label label-primary">{{tag}}</span></a>
+          class="badge  badge-primary ">{{tag}}</span></a>
 
       </div>
     </div>
     <!--Like button stars -->
-    <div class="vertical-center col-md-1 col-xs-12   linkCursor"
+    <div class="vertical-center col-md-1 col-12 bg-light   linkCursor"
          style="background-color: black;color: red; height: 30px">
-      <i class="fa fa-heart pull-right " (click)="toggleLike()"></i>
-      <span> {{blogPost && blogPost.blogLikes.length}}</span>
+      <i class="fa fa-heart pull-right p-1 " style="font-size: 20px" (click)="toggleLike()"></i>
+      <span bg> {{blogPost && blogPost.blogLikes.length}}</span>
     </div>
     <!--Like button ends -->
   </div>

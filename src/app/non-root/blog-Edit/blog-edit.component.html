@@ -1,56 +1,45 @@
+
+
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=evtl1wjgl3ujv09c6ewv4raaybpsynay1f1mgnrxtfgzihrg"></script>
 
-<div class="container " style="border-bottom: solid 1px white; width: 98%;" >
-  <div class="hidden-xs" style="color:white;font-size: 60px"><i class="fa fa-edit" style="margin-right: 1%"></i>Write</div>
-  <div class="hidden-lg" style="color:white;font-size: 30px"><i class="fa fa-edit" style="margin-right: 1%"></i>Write</div>
-</div>
+<!--<div class="container " style="border-bottom: solid 1px white;" >-->
+  <!--<div class="d-none d-md-block" style="color:white;font-size: 60px"><i class="fa fa-edit" style="margin-right: 1%"></i>Write</div>-->
+  <!--<div class="d-none d-xs-block" style="color:white;font-size: 30px"><i class="fa fa-edit" style="margin-right: 1%"></i>Write</div>-->
+<!--</div>-->
 
 
-<br><br>
-
-<div class="container" style="width: 95%">
+<div class="container text-white">
   <div class="row">
-    <div class="col-xs-12 ">
-      <button class="btn btn-danger pull-right">Add images</button>
-      <a *ngIf="_id" class="btn btn-primary pull-right" role="button" (click)="showPreviewClicked()" >Preview</a>
-      <button class="btn btn-default pull-right" (click)="updateBlogOnServer(true)">
+    <div class="col-12 ">
+      <button class="btn btn-outline-light pull-right" style="color: white">Add images</button>
+      <a *ngIf="_id" class="btn btn-outline-light pull-right" role="button" (click)="showPreviewClicked()" >Preview</a>
+      <button class="btn btn-outline-light pull-right" (click)="updateBlogOnServer(true)" style="color: white">
         {{messageFromServer?messageFromServer:'Update'}}
       </button>
       <!--<p *ngIf = "showMessageFromServer">{{messageFromServer}}</p>-->
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-12">
       <!--Blog title starts-->
-      <div class="form-group">
-        <label for="Title" style="color: white">Title</label>
-        <input type="text" class="form-control" [(ngModel)]="blogTitle">
+      <div class="form-group" style="border-bottom: 2px solid white">
+        <input id="search1T" type="text" class="form-control 1" [(ngModel)]="blogTitle"
+               placeholder="Title..." autofocus="" type="search" style="width: 100%; background: transparent; border: hidden;color: white; font-size: 40px;font-weight: bold; outline: none">
       </div>
       <!--Blog title ends-->
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <!--Blog title starts-->
-      <div class="form-group">
-        <label for="Title" style="color: white">Front Image</label>
-        <input type="text" class="form-control" [(ngModel)]="blogImageURL">
-      </div>
-      <!--Blog title ends-->
-    </div>
-  </div>
 
-  <ul class="nav nav-tabs">
-    <li [ngClass]="{'active':!showHTMLBoolean}" (click)="showEditor()"><a>Visual</a></li>
-    <li [ngClass]="{'active':showHTMLBoolean}" (click)="showHTML()"><a>HTML</a></li>
 
-  </ul>
-  <br>
+  <!--<ul class="nav nav-tabs">-->
+    <!--<li [ngClass]="{'active':!showHTMLBoolean}" (click)="showEditor()"><a>Visual</a></li>-->
+    <!--<li [ngClass]="{'active':showHTMLBoolean}" (click)="showHTML()"><a>HTML</a></li>-->
+
+  <!--</ul>-->
 
   <div [hidden]="showHTMLBoolean">
-    <label style="color: white">Body</label>
-    <textarea id="{{elementId}}"></textarea>
+    <textarea placeholder="hello" id="{{elementId}}"></textarea>
   </div>
   <div class="row">
     <!--Text editor begins-->
@@ -64,8 +53,20 @@
       </div>
 
     </div>
+
+    <br><br><br>
+    <div class="col-12">
+      <!--Blog image  starts-->
+      <div class="form-group">
+
+
+        <input type="text" placeholder="Paste main blog image link here..." class="form-control" [(ngModel)]="blogImageURL">
+      </div>
+      <!--Blog image ends-->
+    </div>
+
     <!--HTML ends-->
-    <div class="col-xs-12">
+    <div class="col-12">
       <br>
       <!--tags begin-->
       <label style="color: white">Tags</label>

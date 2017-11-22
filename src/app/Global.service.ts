@@ -15,14 +15,18 @@ export class Global{
 
   }
 
-  blogDisplayURL = 'other/blogdisplay/';
-  loginURL = 'other/login/';
-  signUpURL = 'other/signup/';
-  blogEditURL = 'other/blogEdit/';
-  likedBlogsURL = 'other/dashboard/likedBlogs/';
-  writtenBlogsURL = 'other/dashboard/writtenBlogs/';
-  draftsURL = 'other/dashboard/drafts/';
-  dashboardURL = 'other/dashboard/';
+  blogDisplayURL = 'app/other/blogdisplay/';
+  createNewBlogUrl= 'app/other/new/blog';
+  loginURL = 'app/other/login/';
+  signUpURL = 'app/other/signup/';
+  blogEditURL = 'app/other/blogEdit/';
+  likedBlogsURL = 'app/other/dashboard/likedBlogs/';
+  writtenBlogsURL = 'app/other/dashboard/writtenBlogs/';
+  draftsURL = 'app/other/dashboard/drafts/';
+  dashboardURL = 'app/other/dashboard/';
+
+  public blogGridUrl = 'app/allresults';
+  public showSearchBarBoolean = true;
 
   public _backendRoute_AllResults = 'allresults';
 
@@ -36,7 +40,7 @@ export class Global{
   public resultsArray: [BlogPost];
   public blogCommentsArray: BlogComment[];
 
-  public previousSRPURL ;
+  public previousSRPURL ='/home';
   public previousSRPQueryParams:any = {query:''};
 
   // criteriaObject:CriteriaObject={searchQuery:this.getSearchQuery(),requestType:'POST',user_id:this.getLoggedInUserDetails()._id};

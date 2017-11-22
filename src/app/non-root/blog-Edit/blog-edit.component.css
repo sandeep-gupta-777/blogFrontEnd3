@@ -14,3 +14,6 @@
 }
 
 
+#search1T:focus{
+  outline: none;
+}

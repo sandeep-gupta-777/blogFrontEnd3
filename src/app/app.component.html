@@ -1,36 +1,24 @@
-<div *ngIf="showProgressBar" style="position: fixed;top: 0; z-index: 2;width: 100%">
-  <app-progress-bar></app-progress-bar>
-</div>
 
 <div class="container-fluid ">
   <div class="row"  [ngClass]="{'blackBackground':showMenu && isSmallSizeDevice}">
 
 
-    <!--<div class="col-xs-12 col-md-2 nopadding " >-->
-    <div class="col-xs-12 col-md-2 nopadding " >
-      <!--<div style="position: fixed; z-index: 1" *ngIf="showMenu">-->
-      <!--<div id="headerFixed"  style="position: fixed;top:0px; bottom:0px;left: 0px;overflow-y: auto; z-index: 1;" >-->
+    <div class="col-12 col-md-2 nopadding " >
       <div id="headerFixed"  >
-
-        <app-header-component></app-header-component>
-
       </div>
     </div>
 
-    <div class="col-xs-12 col-md-8 nopadding ">
+    <div class="col-12 col-md-8 nopadding ">
       <router-outlet></router-outlet>
+      <!--<app-blog-grid></app-blog-grid>-->
     </div>
 
-    <div class="col-xs-12 col-md-2 nopadding hidden visible-lg" style="height: 100vh; border-left: #929392 solid 1px; position: fixed; right: 0 " >
-      <!--<div style="position: fixed; z-index: 1" *ngIf="showMenu">-->
+    <div class="col-12 col-md-2 nopadding hidden visible-lg" style="height: 100%; position: fixed; right: 0; top: 0px " >
         <app-tabs ></app-tabs>
     </div>
 
-    <div class="col-xs-12 ">
-      <div id="footerFixed"   style="position: fixed;bottom:40px;right: 0px;overflow-y: auto; z-index: 1;" >
-        <app-footer-component></app-footer-component>
-      </div>
-    </div>
+
+
   </div>
 
 </div>

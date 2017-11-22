@@ -16,10 +16,10 @@
 
 @keyframes test {
   0%{
-    background-color: red;
+    background-color: #343a40;
   }
   100%{
-    background-color: blue;
+    background-color: white;
   }
 }
 @keyframes last {

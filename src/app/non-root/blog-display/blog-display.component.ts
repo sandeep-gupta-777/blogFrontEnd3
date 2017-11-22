@@ -13,6 +13,7 @@ import {Global} from "../../Global.service";
 })
 export class BlogDisplayComponent implements OnInit {
 
+
   ngOnDestroy(): void {
 
     if (this.getClickedBlogPostSubscription)
@@ -94,12 +95,12 @@ export class BlogDisplayComponent implements OnInit {
   triggerGetResultEvent(searchQuery) {//TODO: this exact same method is written in header, put it in helper file
 
     //navigate to http://localhost:4200/icons page is not already navigated
-    if(this.router.url !== "/"+this.global._backendRoute_AllResults)//these are frontend routes but with same value
-      this.router.navigate(["/"+ this.global._backendRoute_AllResults],{queryParams:{query:searchQuery}});
+    if(this.router.url !== "/"+this.global.blogGridUrl)//these are frontend routes but with same value
+      this.router.navigate(["/"+ this.global.blogGridUrl],{queryParams:{query:searchQuery}});
 
     setTimeout(()=>{
       this.helper.notifyKeywordChangeEvent.emit(searchQuery);
-      this.criteriaObj.url = this.global._backendRoute_AllResults;
+      this.criteriaObj.url = this.global.blogGridUrl;
       this.helper.triggergetResultEvent(this.criteriaObj);
     }, 0);
   }
@@ -130,6 +131,8 @@ export class BlogDisplayComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.global.showSearchBarBoolean=false;
+    console.log('inside blog diaplay');
     this.criteriaObj.source = 'from blog display';
 
      this._id = this.route.snapshot.params['id'];
@@ -204,7 +207,7 @@ export class BlogDisplayComponent implements OnInit {
 
   }
   pushBlogInLocalStorageObj(){
-    debugger;
+
     let tempTabObject={tabArray:[this.blogPost]};
     if(!localStorage.getItem('tabs')){
       localStorage.setItem('tabs',JSON.stringify(tempTabObject));

@@ -14,10 +14,6 @@
 
 
 }
-
-.white-border{
-  /*border: green solid 3px;*/
-}
 .shadow {
   box-shadow:1px 2px 0px 0px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
@@ -82,4 +78,23 @@ a{
   }
 }
 
+
+#searchhelp,#searchT:focus{
+  outline: none;
+}
+#searchT{
+  height: 80px;
+  font-size: 60px;
+  color: white;
+border: hidden;
+background: transparent;
+}
+
+#searchhelp{
+  height: 80px;
+  font-size: 60px;
+  color: #808080;
+  border: hidden;
+  background: transparent;
+}
 

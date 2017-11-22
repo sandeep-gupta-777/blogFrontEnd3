@@ -34,15 +34,13 @@ a{
 .center-horizontal{
   display: flex;
   justify-content: center;
-
-
 }
 
 .active{
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.31);
   color: white;
 }
 
-.fa-times:hover{
-  font-size: 20px;
+.tab-titles:hover, .fa-times:hover{
+  font-size: 17px;
 }

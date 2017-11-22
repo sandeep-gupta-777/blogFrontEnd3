@@ -17,15 +17,21 @@ import {BlogGridComponent} from "./blog-grid/blog-grid.component";
 import {SharedModule} from "./sharedModule";
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { TabsComponent } from './tabs/tabs.component';
-import { CamelcasePipe } from './camelcase.pipe';
+import { Footer2Component } from './footer2/footer2.component';
+import { FrontpageComponent } from './frontpage/frontpage.component';
+import { AppRootComponent } from './app-root/app-root.component';
 
 // routes
 const appRoutes: Routes = [
-  {component: BlogGridComponent, path: 'results'},
-  {component: BlogGridComponent, path: 'allresults'},
-  {loadChildren: './non-root/nonRootModule#NonRootModule', path: 'other'},
-  { path: '', redirectTo: 'allresults',pathMatch: 'full'},
-  { path: '**', component: NotFoundComponent }
+
+  {component: AppComponent, path: 'app', children:[
+    {component: BlogGridComponent, path: 'results'},
+    {component: BlogGridComponent, path: 'allresults'},
+    {loadChildren: './non-root/nonRootModule#NonRootModule', path: 'other'}
+  ]},
+  {component: FrontpageComponent, path: 'home'},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '**', component: NotFoundComponent}
 ];
 
 
@@ -38,6 +44,11 @@ const appRoutes: Routes = [
     NotFoundComponent,
     ProgressBarComponent,
     TabsComponent,
+    Footer2Component,
+    FrontpageComponent,
+    AppRootComponent,
+
+
 
     // LoginComponent,
     // SignupComponent,
@@ -55,12 +66,11 @@ const appRoutes: Routes = [
     HttpModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    SharedModule
-    // NonRootModule
+    SharedModule,
   ],
   providers: [
    Helper,Global,Shared,EventService,ComponentService,AuthService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppRootComponent]
 })
 export class AppModule { }

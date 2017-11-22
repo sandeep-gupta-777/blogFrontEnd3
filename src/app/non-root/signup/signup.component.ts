@@ -65,7 +65,7 @@ export class SignupComponent implements OnInit {
   constructor(private helper:Helper, private router:Router, private global:Global) { }
 
   ngOnInit() {
-
+      this.global.showSearchBarBoolean=false;
   }
 
 }

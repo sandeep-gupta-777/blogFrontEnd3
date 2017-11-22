@@ -1,122 +1,175 @@
-<div class="hidden-lg" style="margin-top: 21vh"></div>
-<!--This will occupy space of below fixed component-->
+<!--&lt;!&ndash;<div class="d-none d-xs-block" style="margin-top: 21vh"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;This will occupy space of below fixed component&ndash;&gt;-->
 
-<!--top bar for xs starts-->
-<div class=" container-fluid header-header  hidden-lg " style="background-color: #1f282d;height: 20%; position: fixed;top:0px;left: 0;overflow: hidden; z-index: 1;">
-  <div class="row center-vertical " style="height: 50%" >
-    <div class="col-xs-2  "  (click)="showMenuOnXS = !showMenuOnXS">
-      <i *ngIf="!showMenuOnXS" class="glyphicon glyphicon-menu-hamburger" style="color: white; font-size: 25px; "></i>
-      <i *ngIf="showMenuOnXS" class="fa fa-times" style="color: white; font-size: 35px; "></i>
-    </div>
-    <div class="col-xs-10 ">
-      <a (click)="triggerAllResultsObservable('')"  [routerLink]="['/allresults']" [queryParams]="{query:''}" >
-        <img class="img-responsive"  style="height: 38px"  src="./assets/logo1.png ">
-      </a>
-    </div>
+<!--&lt;!&ndash;top bar for xs starts&ndash;&gt;-->
+<!--<div class=" container-fluid header-header  d-md-none " style="background-color: #1f282d;height: 20%; position: fixed;top:0px;left: 0;overflow: hidden; z-index: 1;">-->
+  <!--<div class="row center-vertical " style="height: 50%" >-->
+    <!--<div class="col-xs-2  "  (click)="showMenuOnXS = !showMenuOnXS">-->
+      <!--<i *ngIf="!showMenuOnXS" class="glyphicon glyphicon-menu-hamburger" style="color: white; font-size: 25px; "></i>-->
+      <!--<i *ngIf="showMenuOnXS" class="fa fa-times" style="color: white; font-size: 35px; "></i>-->
+    <!--</div>-->
+    <!--<div class="col-xs-10 ">-->
+      <!--<a (click)="triggerAllResultsObservable('')"  [routerLink]="['/allresults']" [queryParams]="{query:''}" >-->
+        <!--<img class="img-responsive"  style="height: 38px"  src="./assets/logo1.png ">-->
+      <!--</a>-->
+    <!--</div>-->
 
-  </div>
-  <!--search starts-->
-  <div class="row center-vertical " style="height: 50%" >
-    <div class="col-xs-12">
-      <div class="form-group">
-        <div class="input-group">
-          <input type="text" [ngModel]="searchQuery"
-                 (input)="triggerAllResultsObservable($event.target.value, false)"
-                 class="form-control" placeholder="Search..." aria-describedby="basic-addon2"
-                 style="background: transparent; color: white"
-          >
-          <span (click)="triggerAllResultsObservable(searchQuery, false)" style="background: transparent;cursor: pointer"
-                class="input-group-addon"  id="basic-addon2"><i class="fa fa-search" style="color: white"> </i></span>
+  <!--</div>-->
+  <!--&lt;!&ndash;search starts&ndash;&gt;-->
+  <!--<div class="row center-vertical " style="height: 50%" >-->
+    <!--<div class="col-xs-12">-->
+      <!--<div class="form-group">-->
+        <!--<div class="input-group">-->
+          <!--<input type="text" [ngModel]="searchQuery"-->
+                 <!--(input)="triggerAllResultsObservable($event.target.value, false)"-->
+                 <!--class="form-control" placeholder="Search..." aria-describedby="basic-addon2"-->
+                 <!--style="background: transparent; color: white"-->
+          <!--&gt;-->
+          <!--<span (click)="triggerAllResultsObservable(searchallresults?query=Query, false)" style="background: transparent;cursor: pointer"-->
+                <!--class="input-group-addon"  id="basic-addon2"><i class="fa fa-search" style="color: white"> </i></span>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--&lt;!&ndash;search ends&ndash;&gt;-->
+<!--</div>-->
+<!--&lt;!&ndash;top bar for xs ends&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;style="position: fixed;top:0px; bottom:0px;left: 0px;overflow-y: auto; z-index: 1;&ndash;&gt;-->
+
+<!--<div class=" header-body" style="background-color: #1f282d; position: fixed; bottom:0px;left: 0px;overflow-x: hidden; z-index: 1;" [ngClass]="{'hidden-xs':!showMenuOnXS}">-->
+
+  <!--<div  class="row hidden-xs center-vertical" style="height: 20%;">-->
+    <!--&lt;!&ndash;logo starts here&ndash;&gt;-->
+      <!--<div class="col-xs-12 ">-->
+      <!--<a (click)="triggerAllResultsObservable('')"  [routerLink]="['/allresults']" [queryParams]="{query:''}" >-->
+        <!--<img  class="img-responsive" src="./assets/logo1.png ">-->
+      <!--</a>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;logo ends heree&ndash;&gt;-->
+  <!--</div>-->
+
+  <!--<div class="row whiteText"-->
+       <!--style="display: flex; align-items: center ;justify-content: center;">-->
+    <!--<div-->
+         <!--style="background-color: #ff4f12; width: 15%;height: 40px; display: flex;align-items: center; justify-content: center;">-->
+      <!--<i class="fa fa-edit"></i></div>-->
+    <!--<div (click)="goToBlogEditPage()" style="width: 95%;padding-left: 5%"><a>Create a new blog</a>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<br><br>-->
+  <!--<div class="row whiteText"  *ngFor="let result of [{query:'Angular'},{query:'NodeJS'},{query:'MongoDB'},{query:'HTML CSS'},{query:'Cat memes'}]"-->
+       <!--(click)="triggerAllResultsObservable(result.query)"-->
+       <!--style="display: flex; align-items: center ;justify-content: center" [ngClass]="{'active':searchQuery===result.query}">-->
+    <!--<div style="background-color: green; width: 5%;height: 40px;"></div>-->
+    <!--<div style="width: 95%;padding-left: 5%"><a>{{result.query}}</a></div>-->
+  <!--</div>-->
+
+  <!--<br><br><br><br>-->
+  <!--&lt;!&ndash;search starts&ndash;&gt;-->
+  <!--<div class="row hidden-xs">-->
+    <!--<div class="col-xs-12">-->
+      <!--<div class="form-group">-->
+        <!--<div class="input-group">-->
+          <!--<input type="text" [ngModel]="searchQuery"-->
+                  <!--(input)="triggerAllResultsObservable($event.target.value)"-->
+                 <!--class="form-control" placeholder="Search..." aria-describedby="basic-addon2"-->
+                <!--style="background: transparent; color: white"-->
+          <!--&gt;-->
+          <!--<span (click)="triggerAllResultsObservable(searchQuery)" style="background: transparent;cursor: pointer"-->
+                <!--class="input-group-addon"  id="basic-addon2"><i class="fa fa-search" style="color: white"> </i></span>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--&lt;!&ndash;search ends&ndash;&gt;-->
+
+
+  <!--<div *ngIf="isLoggedIn()" class="row whiteText" style="display: flex; align-items: center ;justify-content: center">-->
+    <!--<div style="background-color: blue; width: 15%;height: 40px; display: flex;align-items: center; justify-content: center;"><i class="fa fa-dashboard"></i></div>-->
+    <!--<div style="width: 85%;padding-left: 5%"><a routerLink="other/dashboard">Dashboard</a></div>-->
+  <!--</div>-->
+  <!--<div class="row whiteText" style="display: flex; align-items: center ;justify-content: center">-->
+    <!--<div style="background-color: blue; width: 15%;height: 40px; display: flex;align-items: center; justify-content: center;"><i class="fa fa-comment"></i></div>-->
+    <!--<div style="width: 85%;padding-left: 5%"><a routerLink="other/public">Public discussion thread</a></div>-->
+  <!--</div>-->
+
+  <!--<div class="row whiteText" style="display: flex; align-items: center ;justify-content: center">-->
+    <!--<div style="background-color: blue; width: 15%;height: 40px; display: flex;align-items: center; justify-content: center;"><i class="fa fa-plus"></i></div>-->
+    <!--<div style="width: 85%;padding-left: 5%"><a routerLink="other/public">Create new thread</a></div>-->
+  <!--</div>-->
+  <!--<div *ngIf="!isLoggedIn()" (click)="goToLoginPage()" class="row whiteText"  style="display: flex; align-items: center ;justify-content: center">-->
+    <!--<div style="background-color: blue; width: 15%;height: 40px; display: flex;align-items: center; justify-content: center;"><i class="fa fa-user"></i></div>-->
+    <!--<div style="width: 85%;padding-left: 5%"><a >Sign up or Login</a></div>-->
+  <!--</div>-->
+  <!--<div *ngIf="isLoggedIn()" (click)="logout()" class="row whiteText"  style="display: flex; align-items: center ;justify-content: center">-->
+    <!--<div style="background-color: blue; width: 15%;height: 40px; display: flex;align-items: center; justify-content: center;"><i class="fa fa-sign-out"></i></div>-->
+    <!--<div style="width: 85%;padding-left: 5%"><a>Log out</a></div>-->
+  <!--</div>-->
+
+<!--</div>-->
+
+
+
+
+<!--navbar starts here-->
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a routerLink="/home" class="navbar-brand" style="font-weight: bold; font-size: 30px;color: white">CodeConvict</a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!--following line will make all links to push to left of
+    logo/brand. so use ml-auto to push it to extream right
+    -->
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ml-auto">
+        <li class="navbar-items">
+          <a routerLink="/home" class="nav-link"><i class="fa fa-home"></i> Home</a>
+        </li>
+        <li class="navbar-items">
+          <a class="nav-link" (click)="searchIconClicked()"><i class="fa fa-search"></i> Search</a>
+        </li>
+        <li class="navbar-items">
+          <a [routerLink]="global.createNewBlogUrl" class="nav-link">Write</a>
+        </li>
+        <li  class="navbar-items">
+            <a *ngIf="!isLoggedIn()" class="nav-link" (click)="goToLoginPage()">Login</a>
+            <a *ngIf="isLoggedIn()" class="nav-link" (click)="logout()">Log out</a>
+        </li>
+            </ul>
+          </div>
+
         </div>
-      </div>
+      </nav>
+      <br><br><br>
+      <!--<div *ngIf="!showSearchBar && shouldShowSearchBar()">-->
+  <!--<br><br><br>-->
+<!--</div>-->
+<!--Search section-->
+<div class="mt-4 pt-5 " *ngIf="shouldShowSearchBar()" >
+
+  <div class="container p-0 " style="width: 40%; position: relative">
+    <!--<h1 class="display-4">Search</h1>-->
+    <!--<p class="lead">Search notes, your own or others</p>-->
+    <div class="container" style="border-bottom: solid 3px white;width: 98%;height: 80px; position: absolute; top: 0px;left: 0;">
+      <!--<div style="color:white;font-size: 60px; "><i class="fa fa-search-plus" style="margin-right: 1%"></i>Search Results</div>-->
+      <input id="searchhelp" autocomplete="off"  [(ngModel)]="searchHint"
+              type="search"  class="py-2"
+             style="width: 100%;position: absolute;;">
+      <input id="searchT" autocomplete="off"  [(ngModel)]="searchQuery" (ngModelChange)="triggerAllResultsObservable($event,200)" (keydown)="rightArrowKeyPressed($event)"
+             placeholder="Search..." autofocus type="search"
+             style="width: 100%; ;color: white;position: absolute ;z-index:10" class="py-2">
     </div>
-  </div>
-  <!--search ends-->
-</div>
-<!--top bar for xs ends-->
 
-
-<!--style="position: fixed;top:0px; bottom:0px;left: 0px;overflow-y: auto; z-index: 1;-->
-
-<div class=" header-body" style="background-color: #1f282d; position: fixed; bottom:0px;left: 0px;overflow-x: hidden; z-index: 1;" [ngClass]="{'hidden-xs':!showMenuOnXS}">
-
-  <div  class="row hidden-xs center-vertical" style="height: 20%;">
-    <!--logo starts here-->
-      <div class="col-xs-12 ">
-      <a (click)="triggerAllResultsObservable('')"  [routerLink]="['/allresults']" [queryParams]="{query:''}" >
-        <img  class="img-responsive" src="./assets/logo1.png ">
-      </a>
-    </div>
-    <!--logo ends heree-->
   </div>
-
-  <div class="row whiteText"
-       style="display: flex; align-items: center ;justify-content: center;">
-    <div
-         style="background-color: #ff4f12; width: 15%;height: 40px; display: flex;align-items: center; justify-content: center;">
-      <i class="fa fa-edit"></i></div>
-    <div (click)="goToBlogEditPage()" style="width: 95%;padding-left: 5%"><a>Create a new blog</a>
-    </div>
-  </div>
-  <br><br>
-  <div class="row whiteText"  *ngFor="let result of [{query:'Angular'},{query:'NodeJS'},{query:'MongoDB'},{query:'HTML CSS'},{query:'Cat memes'}]"
-       (click)="triggerAllResultsObservable(result.query)"
-       style="display: flex; align-items: center ;justify-content: center" [ngClass]="{'active':searchQuery===result.query}">
-    <div style="background-color: green; width: 5%;height: 40px;"></div>
-    <div style="width: 95%;padding-left: 5%"><a>{{result.query}}</a></div>
-  </div>
-
-  <br><br><br><br>
-  <!--search starts-->
-  <div class="row hidden-xs">
-    <div class="col-xs-12">
-      <div class="form-group">
-        <div class="input-group">
-          <input type="text" [ngModel]="searchQuery"
-                  (input)="triggerAllResultsObservable($event.target.value)"
-                 class="form-control" placeholder="Search..." aria-describedby="basic-addon2"
-                style="background: transparent; color: white"
-          >
-          <span (click)="triggerAllResultsObservable(searchQuery)" style="background: transparent;cursor: pointer"
-                class="input-group-addon"  id="basic-addon2"><i class="fa fa-search" style="color: white"> </i></span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--search ends-->
-
-
-  <div *ngIf="isLoggedIn()" class="row whiteText" style="display: flex; align-items: center ;justify-content: center">
-    <div style="background-color: blue; width: 15%;height: 40px; display: flex;align-items: center; justify-content: center;"><i class="fa fa-dashboard"></i></div>
-    <div style="width: 85%;padding-left: 5%"><a routerLink="other/dashboard">Dashboard</a></div>
-  </div>
-  <div class="row whiteText" style="display: flex; align-items: center ;justify-content: center">
-    <div style="background-color: blue; width: 15%;height: 40px; display: flex;align-items: center; justify-content: center;"><i class="fa fa-comment"></i></div>
-    <div style="width: 85%;padding-left: 5%"><a routerLink="other/public">Public discussion thread</a></div>
-  </div>
-
-  <div class="row whiteText" style="display: flex; align-items: center ;justify-content: center">
-    <div style="background-color: blue; width: 15%;height: 40px; display: flex;align-items: center; justify-content: center;"><i class="fa fa-plus"></i></div>
-    <div style="width: 85%;padding-left: 5%"><a routerLink="other/public">Create new thread</a></div>
-  </div>
-  <div *ngIf="!isLoggedIn()" (click)="goToLoginPage()" class="row whiteText"  style="display: flex; align-items: center ;justify-content: center">
-    <div style="background-color: blue; width: 15%;height: 40px; display: flex;align-items: center; justify-content: center;"><i class="fa fa-user"></i></div>
-    <div style="width: 85%;padding-left: 5%"><a >Sign up or Login</a></div>
-  </div>
-  <div *ngIf="isLoggedIn()" (click)="logout()" class="row whiteText"  style="display: flex; align-items: center ;justify-content: center">
-    <div style="background-color: blue; width: 15%;height: 40px; display: flex;align-items: center; justify-content: center;"><i class="fa fa-sign-out"></i></div>
-    <div style="width: 85%;padding-left: 5%"><a>Log out</a></div>
-  </div>
+  <br>
+  <br>
+  <br>
 
 </div>
-
-
-
-
-
-
-
-
-
-
+<br>
 

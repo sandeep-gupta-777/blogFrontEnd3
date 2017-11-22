@@ -11,14 +11,14 @@
   color: blue;
 }
 
-.border{
+.border1{
   border: solid red 2px;
 }
 
-.blogTitle{
-  margin: 20px;
-  font-weight: bold;
-}
+/*.blogTitle{*/
+  /*margin: 20px;*/
+  /*font-weight: bold;*/
+/*}*/
 
 .blogMetaData{
   margin: 10px;
@@ -55,8 +55,8 @@
 }
 
 
-:host /deep/ code:hover{
-  background-color: white;
-  /*color:white;*/
-}
+/*:host /deep/ code:hover{*/
+  /*background-color: white;*/
+  /*!*color:white;*!*/
+/*}*/
 

@@ -100,3 +100,12 @@
 
 }
 /*============animating placeholder ends=================*/
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bg-dark-custom{
+  background: rgba(52, 58, 64, 0.65);
+}

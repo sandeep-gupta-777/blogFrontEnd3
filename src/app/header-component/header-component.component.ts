@@ -5,6 +5,7 @@ import {Global} from "../Global.service";
 import {CriteriaObject} from "../models";
 import {EventService} from "../event.service";
 import set = Reflect.set;
+import {factoryOrValue} from "rxjs/operator/multicast";
 
 @Component({
   selector: 'app-header-component',
@@ -13,7 +14,21 @@ import set = Reflect.set;
 })
 export class HeaderComponentComponent implements OnInit {
 
+  rightArrowKeyPressed(e){
+    console.log(e);
+    if(e.keyCode===39 && this.checkKeywordPartialMatch(this.searchHint, this.searchQuery)){
+      this.searchQuery=this.searchHint;
+      this.triggerAllResultsObservable(this.searchQuery);
+    }
+  }
+  searchIconClicked(){
+
+    this.global.showSearchBarBoolean=!this.global.showSearchBarBoolean;
+    setTimeout(()=>{document.getElementById("searchT") && document.getElementById("searchT").focus();},0)
+  }
   triggerAllResultsObservable(searchQuery?:string,togggleMenu:boolean=true){
+    setTimeout(this.keywordHint(),0);
+    this.global.showSearchBarBoolean = true;
     if(togggleMenu)this.showMenuOnXS = !this.showMenuOnXS;
     console.log(searchQuery);
     this.searchQuery = searchQuery;
@@ -24,9 +39,9 @@ export class HeaderComponentComponent implements OnInit {
     this.helper.notifyKeywordChangeEvent.emit({searchQuery:this.searchQuery, source:"fromHeader"});
 
     //navigate to http://localhost:4200/icons page is not already navigated
-    if(this.router.url !== "/"+this.global._backendRoute_AllResults)//these are frontend routes but with same value
+    if(this.router.url !== "/"+this.global.blogGridUrl)//these are frontend routes but with same value
     {
-      this.router.navigate(["/" + this.global._backendRoute_AllResults], {queryParams: {query: searchQuery}});
+      this.router.navigate(["/" + this.global.blogGridUrl], {queryParams: {query: searchQuery}});
       this.changeRouterSubscription = this.router.events
         .filter(event => (event instanceof NavigationEnd))
         .subscribe((routeData: any) => {
@@ -46,7 +61,7 @@ export class HeaderComponentComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.keywordHint();
     this.criteriaObj.source = 'from header';
 
     this.helper.notifyKeywordChangeEvent.subscribe(({searchQuery,source})=>{
@@ -90,7 +105,7 @@ export class HeaderComponentComponent implements OnInit {
             this.helper.triggergetResultEvent(this.criteriaObj);
           },0);
         }
-        else if(currentURL.indexOf('/allresults')>-1 || currentURL==='/') {
+        else if(currentURL.indexOf(this.global.blogGridUrl)>-1 || currentURL==='/') {
           this.searchQuery =  this.activatedRoute.snapshot.queryParams.query || "";
 
           setTimeout(() => {//may not be needed
@@ -115,6 +130,33 @@ export class HeaderComponentComponent implements OnInit {
       });
   }
 //=====================LIT====================================================
+  keywordHint(){
+    console.log('in keyword hints');
+    if(this.searchQuery==='')
+    {
+      this.searchHint='';
+      return;
+    }
+    let hintArray = ['nodejs','mongoDB','angular', 'Cat Memes','blogs', 'sandeep', 'resume', 'google','mongoose','HTML','bootstrap','css', 'MEAN Stack', 'india'];
+    //sort array by size
+    //checking for partial Match
+    let isPartialMatch:boolean=false;
+    for(let i=0;i<hintArray.length;i++){
+      if(this.checkKeywordPartialMatch(hintArray[i], this.searchQuery)){
+        isPartialMatch=true;
+        this.searchHint=hintArray[i];
+        break;
+      }
+    }
+    if(!isPartialMatch){
+      this.searchHint="";
+    }
+
+  }
+
+  checkKeywordPartialMatch(fullString:string, subString){
+    return fullString.indexOf(subString)===0;
+  }
   isLoggedIn(){
     return localStorage.getItem('token')!== null;
   }
@@ -137,14 +179,15 @@ export class HeaderComponentComponent implements OnInit {
 
     this.global.previousSRPURL = window.location.pathname;
     this.global.previousSRPQueryParams = this.activatedRoute.snapshot.queryParams;
-    this.router.navigate(['other/login']);
+    console.log('saved previous url');
+    this.router.navigate([this.global.loginURL]);
 
   }
   logout(){
     localStorage.clear();
     this.global.previousSRPURL = window.location.pathname;
     this.global.previousSRPQueryParams = this.activatedRoute.snapshot.queryParams;
-    this.router.navigate(['other/login']);
+    this.router.navigate([this.global.loginURL]);
     this.helper.showNotificationBarEvent.emit({message:'You are logged out!'});
   };
 
@@ -157,6 +200,7 @@ export class HeaderComponentComponent implements OnInit {
   }
 
   showMenuOnXS=false;
+  searchHint="";
   lastCallRef;
   criteriaObj:CriteriaObject =this.global.getCriteriaObject();
   changeRouterSubscription;
@@ -164,11 +208,19 @@ export class HeaderComponentComponent implements OnInit {
   private routerEventSubscription;
   public searchQuery:string= "";
   public userfirstName="";
+  showSearchBar:boolean = true;
 
   constructor( public helper: Helper,private eventService:EventService, public global:Global,private activatedRoute:ActivatedRoute,
                public router: Router) {
     helper.toggleClassEvent.subscribe((HTMLClass) => {
       this.headerFixed = true;
     });
+  }
+  shouldShowSearchBar():boolean{
+    if(window.location.pathname==='/' || window.location.pathname==='/home'){
+      return true;
+    }
+    return this.global.showSearchBarBoolean;
+    // return this.showSearchBar;
   }
 }
