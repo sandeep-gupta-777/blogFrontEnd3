@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   showErrorMessage = false;
   helper_message = "";
 
-  constructor(private helper:Helper,private global:Global, private router:Router,private activatedRoute:ActivatedRoute) {
+  constructor(private helper:Helper,public global:Global, private router:Router,private activatedRoute:ActivatedRoute) {
   }
   @ViewChild('f') form;
   onSubmit() {
